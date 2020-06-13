@@ -5,7 +5,6 @@ import Routes     from "./routes";
 
 
 const Application = () => {
-
     return (
         <Router history={history}>
             <Routes/>
