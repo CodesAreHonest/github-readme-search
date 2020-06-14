@@ -42,7 +42,7 @@ class Routes extends PureComponent {
 
         // redirect to specific path based on authorization state
         const rootPathRedirection = publicRoutes.length !== 0 &&
-            <Route exact path="/" render={<Home/>}/>;
+            <Route exact path="/" render={() => <Home/>}/>;
 
         // redirect to 404 if round not found.
         const notFoundRedirection = publicRoutes.count !== 0 &&
