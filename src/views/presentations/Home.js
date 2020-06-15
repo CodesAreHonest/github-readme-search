@@ -13,7 +13,6 @@ import H5                        from "../components/H5";
 import GithubUserSearchContainer from "../containers/GithubUserSearchContainer";
 
 const useStyles = makeStyles(theme => {
-    console.log(theme);
     return {
         topSpace       : {
             marginTop: "3rem"

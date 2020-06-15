@@ -1,18 +1,17 @@
-import Home    from "../presentations/Home";
-import PageOne from "../presentations/PageOne";
+import Home              from "../presentations/Home";
+import GithubUserProfile from "../presentations/GithubUserProfile";
 
 const PublicRoutes = [
     {
         path     : '/',
         exact    : true,
-        strict   : true,
         label    : 'Home',
         component: Home
     },
     {
-        path     : '/pageOne',
-        label    : 'Home',
-        component: PageOne
+        path     : '/user/profile',
+        label    : 'Github User Profile',
+        component: GithubUserProfile
     }
 ];
 
