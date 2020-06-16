@@ -1,7 +1,7 @@
-import React        from "react";
-import BranchSelect from "./BranchSelect";
-import Box          from "@material-ui/core/Box";
-import makeStyles   from "@material-ui/core/styles/makeStyles";
+import React, { useState } from "react";
+import BranchSelect        from "./BranchSelect";
+import Box                 from "@material-ui/core/Box";
+import makeStyles          from "@material-ui/core/styles/makeStyles";
 
 // render mark down with html
 import ReactMarkDown from "react-markdown";
@@ -76,11 +76,8 @@ const useStyles = makeStyles(theme => ({
 
 const MarkdownContainer = () => {
     const classes = useStyles();
+    const [markDown, setMarkDown] = useState(initialSource);
 
-    /**
-     * Plugins
-     * 1. Table of content - toc
-     */
     const plugins = [Toc];
 
     return (
