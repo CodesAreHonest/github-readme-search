@@ -10,19 +10,14 @@ import H6               from "../../components/H6";
 import BodyFont         from "../../components/BodyFont";
 
 const useStyles = makeStyles(theme => ({
-    hero   : {
+    hero  : {
         padding: theme.spacing(2)
     },
-    avatar : {
+    avatar: {
         height: theme.spacing(8),
         width : theme.spacing(8),
         border: '3px solid darkgrey'
     },
-    divider: {
-        marginBottom: theme.spacing(2),
-        marginLeft  : theme.spacing(2),
-        marginRight : theme.spacing(2)
-    }
 }));
 
 const SidebarHero = () => {
@@ -51,7 +46,6 @@ const SidebarHero = () => {
                     </Grid>
                 </Grid>
             </div>
-            <Divider className={classes.divider}/>
         </Fragment>
     )
 

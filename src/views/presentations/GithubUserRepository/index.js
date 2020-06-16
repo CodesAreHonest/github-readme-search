@@ -5,6 +5,7 @@ import makeStyles                 from "@material-ui/core/styles/makeStyles"
 import Header                     from "../../components/Header";
 import Sidebar                    from "../../components/Sidebar";
 import RepositorySidebarContainer from "../../containers/RepositorySidebarContainer";
+import GithubUserProfileContent   from "../GithubUserProfile/content";
 
 const useStyles = makeStyles(theme => {
     return {
@@ -13,7 +14,7 @@ const useStyles = makeStyles(theme => {
         },
         content: {
             padding   : `0 ${theme.spacing(1)}px`,
-            marginLeft: 400,
+            marginLeft: 300,
             flexGrow  : 1
         }
     }
@@ -44,6 +45,7 @@ const GithubUserRepository = () => {
             </Sidebar>
             <main className={classes.content}>
                 <Toolbar/>
+                <GithubUserProfileContent/>
             </main>
         </div>
     )

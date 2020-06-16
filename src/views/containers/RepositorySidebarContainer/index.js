@@ -5,17 +5,11 @@ import Toolbar    from "@material-ui/core/Toolbar";
 import Box        from "@material-ui/core/Box";
 import Button     from "@material-ui/core/Button";
 
-import GithubLogo      from "../../../assets/github-search.jpg";
-import H5              from "../../components/H5";
-import BodyFont        from "../../components/BodyFont";
-import InformationItem from "../../components/InformationItem";
+import GitHubIcon from '@material-ui/icons/GitHub';
+import GithubLogo from "../../../assets/github-search.jpg";
 
-import BusinessIcon   from '@material-ui/icons/Business';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import EmailIcon      from '@material-ui/icons/Email';
-import LinkIcon       from '@material-ui/icons/Link';
-import TwitterIcon    from '@material-ui/icons/Twitter';
-import GitHubIcon     from '@material-ui/icons/GitHub';
+import RepositorySidebarDetail      from "./detail";
+import RepositorySidebarInformation from "./information";
 
 const useStyles = makeStyles(theme => ({
     root           : {
@@ -54,47 +48,21 @@ const RepositorySidebarContainer = () => {
             <Avatar variant="rounded" src={GithubLogo} className={classes.avatar}/>
 
             <Box className={classes.userDetail}>
-                <H5>:name</H5>
-                <BodyFont>:username</BodyFont>
+                <RepositorySidebarDetail
+                    name=":name"
+                    username=":username"/>
             </Box>
 
             <Box className={classes.userInformation}>
-                <Box>
-                    <InformationItem
-                        logo={<BusinessIcon/>}
-                        text="Some company"
-                    />
-                </Box>
-                <Box>
-                    <InformationItem
-                        logo={<LocationOnIcon/>}
-                        text="Some location"
-                    />
-                </Box>
-                <Box>
-                    <InformationItem
-                        logo={<EmailIcon/>}
-                        text="yinghua@gmail.com"
-                    />
-                </Box>
-                <Box>
-                    <InformationItem
-                        logo={<LinkIcon/>}
-                        text="Link"
-                    />
-                </Box>
-                <Box>
-                    <InformationItem
-                        logo={<TwitterIcon/>}
-                        text="@yinghua"
-                    />
-                </Box>
+                <RepositorySidebarInformation/>
             </Box>
 
             <Box className={classes.visitGithub}>
                 <Button variant="contained" fullWidth color="primary">
                     <GitHubIcon/>
-                    <Box component="span" className={classes.buttonText}>:username Github</Box>
+                    <Box component="span" className={classes.buttonText}>
+                        view in Github
+                    </Box>
                 </Button>
             </Box>
 

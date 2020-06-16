@@ -43,6 +43,10 @@ const useStyles = makeStyles(theme => ({
     paragraph    : {
         fontSize: "12px",
         padding : `${theme.spacing(0.5)}px 0`,
+    },
+    divider      : {
+        marginLeft : theme.spacing(2),
+        marginRight: theme.spacing(2)
     }
 }));
 
@@ -51,7 +55,7 @@ const RepositoryCard = () => {
 
     return (
         <Box className={classes.root}>
-            <Divider/>
+            <Divider className={classes.divider}/>
             <Box className={classes.container}>
                 <BodyFont className={classes.title}>
                     :repository-name

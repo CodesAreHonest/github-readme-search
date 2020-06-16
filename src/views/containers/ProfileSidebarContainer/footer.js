@@ -8,7 +8,7 @@ import ForwardIcon from "@material-ui/icons/ArrowForward";
 
 const useStyles = makeStyles(theme => ({
     root          : {
-        position       : 'absolute',
+        position       : props => props.position,
         padding        : `${theme.spacing(2)}px ${theme.spacing(1)}px`,
         backgroundColor: "rgba(0,0,0,0.67)",
         bottom         : '0',
@@ -27,9 +27,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const SidebarFooter = () => {
+const SidebarFooter = ({ position }) => {
 
-    const classes = useStyles();
+    const classes = useStyles({ position });
 
     return (
         <footer className={classes.root}>
@@ -47,6 +47,10 @@ const SidebarFooter = () => {
             </Grid>
         </footer>
     )
+};
+
+SidebarFooter.defaultProps = {
+    position: "absolute"
 };
 
 export default SidebarFooter;
