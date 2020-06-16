@@ -112,7 +112,7 @@ const ProfileSearchRepoContainer = () => {
                        autoComplete="off"
                        aria-autocomplete="none"
                        className={classes.textField}
-                       placeholder="Search Github User..."
+                       placeholder="Search Repository..."
                        onFocus={() => setShowPrevious(true)}
                        onBlur={() => setShowPrevious(false)}
                 />

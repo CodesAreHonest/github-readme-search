@@ -11,24 +11,15 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
     searchBox       : {
-        backgroundColor               : "#dfe1e5",
-        borderRadius                  : "18px",
-        display                       : "flex",
-        width                         : "50%",
-        position                      : "relative",
-        margin                        : "0 auto",
-        padding                       : "6px 11px",
-        "&:hover"                     : {
+        backgroundColor: "#dfe1e5",
+        borderRadius   : "18px",
+        display        : "flex",
+        width          : "100%",
+        position       : "relative",
+        margin         : "0 auto",
+        padding        : "6px 11px",
+        "&:hover"      : {
             boxShadow: "1px 0px 3px 5px #424242",
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: "50%"
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: "75%"
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: "100%"
         },
     },
     previousSearch  : {
@@ -102,12 +93,12 @@ const useStyles = makeStyles(theme => ({
 
 const GithubUserSearchContainer = () => {
 
-    const [githubUser, setGithubUser]     = useState("");
+    const [githubUser, setGithubUser] = useState("");
     const [showPrevious, setShowPrevious] = useState(false);
-    const classes                         = useStyles();
+    const classes = useStyles();
 
     const onGithubUserChange = e => setGithubUser(e.target.value);
-    const onClearUser        = () => setGithubUser("");
+    const onClearUser = () => setGithubUser("");
 
     const isCloseButtonDisplay = githubUser.trim().length > 0;
 

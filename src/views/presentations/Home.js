@@ -49,14 +49,14 @@ const Home = () => {
     return (
         <Container>
             <Box className={classes.topSpace}/>
-            <Grid container>
+            <Grid container style={{ justifyContent: 'center' }}>
                 <Grid item xs={12}>
                     <Avatar className={classes.avatar} src={GithubSearchLogo}/>
                 </Grid>
                 <Grid item xs={12} className={classes.brandContainer}>
                     <H5>Github README Finder</H5>
                 </Grid>
-                <Grid item xs={12} className={classes.searchContainer}>
+                <Grid item xs={12} sm={12} md={12} lg={8} className={classes.searchContainer}>
                     <GithubUserSearchContainer/>
                 </Grid>
             </Grid>

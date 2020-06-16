@@ -1,6 +1,7 @@
 import Home                 from "../presentations/Home";
 import GithubUserProfile    from "../presentations/GithubUserProfile";
 import GithubUserRepository from "../presentations/GithubUserRepository";
+import UserSearchResult     from "../presentations/UserSearchResult";
 
 const PublicRoutes = [
     {
@@ -18,6 +19,11 @@ const PublicRoutes = [
         path     : '/user/repository',
         label    : "Github User Repository",
         component: GithubUserRepository
+    },
+    {
+        path     : '/user/result',
+        label    : "Search User Result",
+        component: UserSearchResult
     }
 ];
 
