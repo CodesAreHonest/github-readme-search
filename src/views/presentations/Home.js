@@ -10,7 +10,7 @@ import Box        from "@material-ui/core/Box";
 
 import GithubSearchLogo          from "../../assets/github-search.jpg";
 import H5                        from "../components/H5";
-import GithubUserSearchContainer from "../containers/GithubUserSearchContainer";
+import GithubUserSearchContainer from "../containers/Github/UserSearchContainer";
 
 const useStyles = makeStyles(theme => {
     return {
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => {
 
 const Home = () => {
     const dispatch = useDispatch();
-    const classes  = useStyles();
+    const classes = useStyles();
 
     const getGithubUser = () => {
         dispatch(githubUserAction.getGithubUsers('123'))

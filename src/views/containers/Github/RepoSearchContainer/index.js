@@ -8,7 +8,7 @@ import Box        from "@material-ui/core/Box";
 import MenuList   from "@material-ui/core/MenuList";
 import MenuItem   from "@material-ui/core/MenuItem";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import BodyFont   from "../../components/BodyFont";
+import BodyFont   from "../../../components/BodyFont";
 
 const useStyles = makeStyles(theme => ({
     searchBox   : {
@@ -70,11 +70,11 @@ const useStyles = makeStyles(theme => ({
 const GithubRepoSearchContainer = () => {
 
     const [githubRepo, setGithubRepo] = useState("");
-    const isCloseButtonDisplay        = githubRepo.trim().length > 0;
-    const classes                     = useStyles({ isCloseButtonDisplay });
+    const isCloseButtonDisplay = githubRepo.trim().length > 0;
+    const classes = useStyles({ isCloseButtonDisplay });
 
     const onGithubUserChange = e => setGithubRepo(e.target.value);
-    const onClearUser        = () => setGithubRepo("");
+    const onClearUser = () => setGithubRepo("");
 
     return (
         <form id="search-user-repo">
@@ -104,7 +104,7 @@ const GithubRepoSearchContainer = () => {
 
             <Box className={classes.resultCount}>
                 <BodyFont>
-                    Total Repositories Found: <b>1</b>
+                    Total Repositories Found: <b>:count</b>
                 </BodyFont>
             </Box>
         </form>

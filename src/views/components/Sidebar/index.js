@@ -7,7 +7,7 @@ import Toolbar          from "@material-ui/core/Toolbar";
 import SidebarContainer from "../../containers/SidebarContainer";
 
 const drawerWidth = 400;
-const useStyles   = makeStyles(theme => {
+const useStyles = makeStyles(theme => {
     return {
         drawer     : {
             [theme.breakpoints.up('sm')]: {
@@ -26,7 +26,7 @@ const useStyles   = makeStyles(theme => {
 const Sidebar = ({ open, onDrawerClose }) => {
 
     const classes = useStyles();
-    const theme   = useTheme();
+    const theme = useTheme();
 
     const drawerContent = (
         <div>123</div>

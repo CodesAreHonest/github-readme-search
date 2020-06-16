@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => {
             display: 'flex'
         },
         content: {
-            padding: `0 ${theme.spacing(1)}px`
+            padding   : `0 ${theme.spacing(1)}px`,
+            marginLeft: 400,
+            flexGrow  : 1
         }
     }
 });

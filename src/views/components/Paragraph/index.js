@@ -1,13 +1,12 @@
 import React      from "react";
 import Typography from "@material-ui/core/Typography";
 
-const BodyFont = ({ children, className }) => {
-
+const Paragraph = ({ children, className }) => {
     return (
-        <Typography variant="body2" className={className}>
+        <Typography paragraph className={className}>
             {children}
         </Typography>
     )
 };
 
-export default BodyFont;
+export default Paragraph;
