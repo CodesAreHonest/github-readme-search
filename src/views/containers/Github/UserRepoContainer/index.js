@@ -4,9 +4,8 @@ import makeStyles     from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: 'auto',
-        height         : '60vh',
-        overflowY      : "auto"
+        height   : '60vh',
+        overflowY: "auto"
     }
 }));
 

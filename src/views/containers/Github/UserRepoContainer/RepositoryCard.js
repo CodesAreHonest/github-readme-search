@@ -4,6 +4,7 @@ import makeStyles            from "@material-ui/core/styles/makeStyles";
 import Grid                  from "@material-ui/core/Grid";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import StarLogo              from "@material-ui/icons/StarBorder";
+import Divider               from "@material-ui/core/Divider";
 import BodyFont              from "../../../components/BodyFont";
 import Paragraph             from "../../../components/Paragraph";
 
@@ -50,6 +51,7 @@ const RepositoryCard = () => {
 
     return (
         <Box className={classes.root}>
+            <Divider/>
             <Box className={classes.container}>
                 <BodyFont className={classes.title}>
                     :repository-name

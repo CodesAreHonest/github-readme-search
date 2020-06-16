@@ -4,6 +4,7 @@ import Toolbar             from "@material-ui/core/Toolbar";
 import makeStyles          from "@material-ui/core/styles/makeStyles"
 import Header              from "../../components/Header";
 import Sidebar             from "../../components/Sidebar";
+import MarkdownContainer   from "../../containers/Github/MarkdownContainer";
 
 const useStyles = makeStyles(theme => {
     return {
@@ -26,7 +27,6 @@ const GithubUserProfile = () => {
     const goBack = () => history.push("/");
 
     const [mobileOpen, setMobileOpen] = useState(false);
-
     const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
     return (
@@ -41,7 +41,7 @@ const GithubUserProfile = () => {
             />
             <main className={classes.content}>
                 <Toolbar/>
-                main content
+                <MarkdownContainer/>
             </main>
         </div>
     )
