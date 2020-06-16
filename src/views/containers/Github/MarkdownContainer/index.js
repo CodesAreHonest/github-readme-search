@@ -6,8 +6,8 @@ import makeStyles          from "@material-ui/core/styles/makeStyles";
 // render mark down with html
 import ReactMarkDown from "react-markdown";
 import Paper         from "@material-ui/core/Paper";
-import Toc           from "remark-toc"
 import CodeBlock     from "./Codeblock";
+import toc           from "remark-toc";
 
 const initialSource = `
 # Live demo
@@ -78,8 +78,6 @@ const MarkdownContainer = () => {
     const classes = useStyles();
     const [markDown, setMarkDown] = useState(initialSource);
 
-    const plugins = [Toc];
-
     return (
         <Box className={classes.root}>
             <Box><BranchSelect/></Box>
@@ -87,11 +85,11 @@ const MarkdownContainer = () => {
                 <Paper>
                     <ReactMarkDown
                         className={classes.paper}
-                        source={initialSource}
+                        source={markDown}
                         escapeHtml={false} // render HTML
                         includeNodeIndex={true}
                         renderers={{ code: CodeBlock }}
-                        plugins={plugins}
+                        plugins={[toc]}
                     />
                 </Paper>
             </Box>

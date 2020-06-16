@@ -1,36 +1,29 @@
-import React            from "react";
-import Drawer           from "@material-ui/core/Drawer";
-import Hidden           from "@material-ui/core/Hidden";
-import makeStyles       from "@material-ui/core/styles/makeStyles"
-import useTheme         from "@material-ui/core/styles/useTheme";
-import Toolbar          from "@material-ui/core/Toolbar";
-import SidebarContainer from "../../containers/SidebarContainer";
+import React      from "react";
+import Drawer     from "@material-ui/core/Drawer";
+import Hidden     from "@material-ui/core/Hidden";
+import makeStyles from "@material-ui/core/styles/makeStyles"
+import useTheme   from "@material-ui/core/styles/useTheme";
 
-const drawerWidth = 400;
 const useStyles = makeStyles(theme => {
     return {
         drawer     : {
             [theme.breakpoints.up('sm')]: {
-                width     : drawerWidth,
+                width     : props => props.width,
                 flexShrink: 0,
             },
         },
         drawerPaper: {
-            width     : drawerWidth,
+            width     : props => props.width,
             background: "#212121 !important",
             border    : "none"
         }
     }
 });
 
-const Sidebar = ({ open, onDrawerClose }) => {
+const Sidebar = ({ open, onDrawerClose, children, width }) => {
 
-    const classes = useStyles();
+    const classes = useStyles({ width });
     const theme = useTheme();
-
-    const drawerContent = (
-        <div>123</div>
-    );
 
     return (
         <nav aria-label="sidebar">
@@ -44,7 +37,7 @@ const Sidebar = ({ open, onDrawerClose }) => {
                     ModalProps={{ keepMounted: true }}
                     PaperProps={{ elevation: 5 }}
                 >
-                    <SidebarContainer/>
+                    {children}
                 </Drawer>
             </Hidden>
             <Hidden xsDown implementation="css">
@@ -56,11 +49,15 @@ const Sidebar = ({ open, onDrawerClose }) => {
                     variant="permanent"
                     open
                 >
-                    <SidebarContainer/>
+                    {children}
                 </Drawer>
             </Hidden>
         </nav>
     );
+};
+
+Sidebar.defaultProps = {
+    width: 400
 };
 
 export default Sidebar;

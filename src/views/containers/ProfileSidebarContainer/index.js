@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const SidebarContainer = () => {
+const ProfileSidebarContainer = () => {
     const classes = useStyles();
 
     return (
@@ -33,4 +33,4 @@ const SidebarContainer = () => {
     )
 };
 
-export default SidebarContainer;
+export default ProfileSidebarContainer;

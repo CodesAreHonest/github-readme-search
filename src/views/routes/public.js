@@ -1,5 +1,6 @@
-import Home              from "../presentations/Home";
-import GithubUserProfile from "../presentations/GithubUserProfile";
+import Home                 from "../presentations/Home";
+import GithubUserProfile    from "../presentations/GithubUserProfile";
+import GithubUserRepository from "../presentations/GithubUserRepository";
 
 const PublicRoutes = [
     {
@@ -12,6 +13,11 @@ const PublicRoutes = [
         path     : '/user/profile',
         label    : 'Github User Profile',
         component: GithubUserProfile
+    },
+    {
+        path     : '/user/repository',
+        label    : "Github User Repository",
+        component: GithubUserRepository
     }
 ];
 
