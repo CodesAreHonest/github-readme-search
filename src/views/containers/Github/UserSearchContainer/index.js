@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector }   from "react-redux";
+import { useHistory }                 from "react-router";
 
-import Button     from "@material-ui/core/Button";
-import Paper      from "@material-ui/core/Paper";
-import CloseIcon  from "@material-ui/icons/Close";
-import SearchIcon from "@material-ui/icons/Search";
-import Box        from "@material-ui/core/Box";
-import MenuList   from "@material-ui/core/MenuList";
-import MenuItem   from "@material-ui/core/MenuItem";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import Button                                from "@material-ui/core/Button";
+import Paper                                 from "@material-ui/core/Paper";
+import CloseIcon                             from "@material-ui/icons/Close";
+import SearchIcon                            from "@material-ui/icons/Search";
+import Box                                   from "@material-ui/core/Box";
+import MenuList                              from "@material-ui/core/MenuList";
+import MenuItem                              from "@material-ui/core/MenuItem";
+import makeStyles                            from "@material-ui/core/styles/makeStyles";
+import { githubUserAction, githubUserTypes } from "../../../../states/GithubUser";
 
 const useStyles = makeStyles(theme => ({
     searchBox       : {
@@ -96,14 +99,39 @@ const GithubUserSearchContainer = () => {
     const [githubUser, setGithubUser] = useState("");
     const [showPrevious, setShowPrevious] = useState(false);
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const onGithubUserChange = e => setGithubUser(e.target.value);
     const onClearUser = () => setGithubUser("");
-
     const isCloseButtonDisplay = githubUser.trim().length > 0;
 
+    const githubUserState = useSelector(({ githubUser }) => githubUser.users);
+
+    const onFormSubmit = e => {
+        e.preventDefault();
+
+        if ( githubUser.trim().length <= 0 ) {
+            return false;
+        }
+
+        dispatch(githubUserAction.getGithubUsers(githubUser));
+    };
+
+    useEffect(() => {
+
+        const { type } = githubUserState;
+        if ( type === githubUserTypes.GET_GITHUB_USERS_SUCCESS ) {
+            history.push("/user/result", {
+                query: githubUser
+            });
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [githubUserState]);
+
     return (
-        <form id="search-github-user">
+        <form id="search-github-username" noValidate={true} onSubmit={onFormSubmit}>
             <Paper className={classes.searchBox}>
                 <input type="text"
                        onChange={onGithubUserChange}
@@ -112,7 +140,7 @@ const GithubUserSearchContainer = () => {
                        autoComplete="off"
                        aria-autocomplete="none"
                        className={classes.textField}
-                       placeholder="Search Github User..."
+                       placeholder="Search Github Username..."
                        onFocus={() => setShowPrevious(true)}
                        onBlur={() => setShowPrevious(false)}
                 />

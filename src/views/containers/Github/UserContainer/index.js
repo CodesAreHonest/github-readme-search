@@ -27,7 +27,7 @@ const UserContainer = () => {
         <content className={classes.root}>
             <Container>
                 <Grid container style={{ justifyContent: "center" }}>
-                    <Grid xs={12} sm={12} md={10} lg={8} className={classes.searchContainer}>
+                    <Grid item xs={12} sm={12} md={10} lg={8} className={classes.searchContainer}>
                         <GithubUserSearchContainer/>
 
                         <Box className={classes.searchCount}>

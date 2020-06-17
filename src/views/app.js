@@ -1,6 +1,6 @@
 import React                             from "react";
 import history                           from "./utils/history";
-import { Router }                        from "react-router-dom";
+import { BrowserRouter as Router }       from "react-router-dom";
 import Routes                            from "./routes";
 import { Provider }                      from "react-redux";
 import configureStore                    from "../configureStore";

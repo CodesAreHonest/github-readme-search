@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch }      from "react-redux";
-import { githubUserAction } from "../../states/GithubUser";
+import React from "react";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Container  from "@material-ui/core/Container";
@@ -35,16 +33,7 @@ const useStyles = makeStyles(theme => {
 });
 
 const Home = () => {
-    const dispatch = useDispatch();
     const classes = useStyles();
-
-    const getGithubUser = () => {
-        dispatch(githubUserAction.getGithubUsers('123'))
-    };
-
-    useEffect(() => {
-        getGithubUser()
-    }, []);
 
     return (
         <Container>

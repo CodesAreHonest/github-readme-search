@@ -8,6 +8,8 @@ import GithubSearchLogo from "../../../assets/github-search.jpg";
 import BackIcon from "@material-ui/icons/ArrowBack";
 import MenuIcon from "@material-ui/icons/Menu";
 
+import { useHistory } from "react-router";
+
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
@@ -15,7 +17,8 @@ const useStyles = makeStyles(theme => ({
         zIndex: theme.zIndex.drawer + 1,
     },
     logo      : {
-        margin: "0 auto"
+        margin: "0 auto",
+        cursor: "pointer"
     },
     menuButton: {
         [theme.breakpoints.up('sm')]: {
@@ -27,6 +30,9 @@ const useStyles = makeStyles(theme => ({
 const Header = ({ onMenuIconClick, onBackIconClick }) => {
 
     const classes = useStyles();
+    const history = useHistory();
+
+    const navigateToHome = () => history.replace("/");
 
     return (
         <AppBar position="fixed" color="default" className={classes.appBar}>
@@ -42,7 +48,12 @@ const Header = ({ onMenuIconClick, onBackIconClick }) => {
                 >
                     <MenuIcon/>
                 </IconButton>
-                <Avatar variant="rounded" src={GithubSearchLogo} className={classes.logo}/>
+                <Avatar
+                    variant="rounded"
+                    src={GithubSearchLogo}
+                    className={classes.logo}
+                    onClick={navigateToHome}
+                />
             </Toolbar>
         </AppBar>
     )

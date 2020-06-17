@@ -12,16 +12,19 @@ const PublicRoutes = [
     },
     {
         path     : '/user/profile',
+        exact    : true,
         label    : 'Github User Profile',
         component: GithubUserProfile
     },
     {
         path     : '/user/repository',
+        exact    : true,
         label    : "Github User Repository",
         component: GithubUserRepository
     },
     {
         path     : '/user/result',
+        exact    : true,
         label    : "Search User Result",
         component: UserSearchResult
     }
