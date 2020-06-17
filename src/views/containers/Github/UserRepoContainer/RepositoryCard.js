@@ -63,6 +63,7 @@ const RepositoryCard = () => {
                 <Paragraph className={classes.paragraph}>
                     123123123
                 </Paragraph>
+
                 <Grid container spacing={1}>
                     <Grid xs item>
                         <Box component="span" className={classes.logoContainer}>

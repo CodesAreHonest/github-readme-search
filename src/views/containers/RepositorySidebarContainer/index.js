@@ -1,15 +1,16 @@
-import React      from "react";
-import Avatar     from "@material-ui/core/Avatar";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Toolbar    from "@material-ui/core/Toolbar";
-import Box        from "@material-ui/core/Box";
-import Button     from "@material-ui/core/Button";
+import React, { useEffect, useState } from "react";
+import Avatar                         from "@material-ui/core/Avatar";
+import makeStyles                     from "@material-ui/core/styles/makeStyles";
+import Toolbar                        from "@material-ui/core/Toolbar";
+import Box                            from "@material-ui/core/Box";
+import Button                         from "@material-ui/core/Button";
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 import GithubLogo from "../../../assets/github-search.jpg";
 
 import RepositorySidebarDetail      from "./detail";
 import RepositorySidebarInformation from "./information";
+import UseGithubUserProfile         from "../../hooks/UseGithubUserProfile";
 
 const useStyles = makeStyles(theme => ({
     root           : {
@@ -41,24 +42,60 @@ const useStyles = makeStyles(theme => ({
 const RepositorySidebarContainer = () => {
 
     const classes = useStyles();
+    const { detail } = UseGithubUserProfile();
+    const { profile } = detail;
+
+    const [avatarUrl, setAvatarUrl] = useState("");
+    const [name, setName] = useState("");
+    const [login, setLogin] = useState("");
+    const [company, setCompany] = useState("");
+    const [location, setLocation] = useState("");
+    const [email, setEmail] = useState("");
+    const [twitter, setTwitter] = useState("");
+    const [htmlUrl, setHtmlUrl] = useState("");
+
+    useEffect(() => {
+
+        const { login, name, company, location, email, twitter_username, html_url, avatar_url } = profile;
+        setName(name);
+        setLogin(login);
+        setCompany(company);
+        setLocation(location);
+        setEmail(email);
+        setTwitter(twitter_username);
+        setHtmlUrl(html_url);
+        setAvatarUrl(avatar_url);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className={classes.root}>
             <Toolbar variant="dense"/>
-            <Avatar variant="rounded" src={GithubLogo} className={classes.avatar}/>
+            <Avatar variant="rounded" src={avatarUrl} className={classes.avatar}/>
 
             <Box className={classes.userDetail}>
                 <RepositorySidebarDetail
-                    name=":name"
-                    username=":username"/>
+                    name={name}
+                    username={login}/>
             </Box>
 
             <Box className={classes.userInformation}>
-                <RepositorySidebarInformation/>
+                <RepositorySidebarInformation
+                    company={company}
+                    location={location}
+                    email={email}
+                    twitter={twitter}
+                />
             </Box>
 
             <Box className={classes.visitGithub}>
-                <Button variant="contained" fullWidth color="primary">
+                <Button
+                    variant="contained"
+                    fullWidth
+                    color="primary"
+                    onClick={() => window.open(htmlUrl, "_blank")}
+                >
                     <GitHubIcon/>
                     <Box component="span" className={classes.buttonText}>
                         view in Github

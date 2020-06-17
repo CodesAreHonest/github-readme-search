@@ -1,5 +1,4 @@
 import React                             from "react";
-import history                           from "./utils/history";
 import { BrowserRouter as Router }       from "react-router-dom";
 import Routes                            from "./routes";
 import { Provider }                      from "react-redux";
@@ -24,7 +23,7 @@ const Application = () => {
         <Provider store={store}>
             <MuiThemeProvider theme={theme}>
                 <CssBaseline/>
-                <Router history={history}>
+                <Router>
                     <Routes/>
                 </Router>
             </MuiThemeProvider>

@@ -6,12 +6,9 @@ import Box                           from "@material-ui/core/Box";
 import GithubUserSearchContainer     from "../UserSearchContainer";
 import BodyFont                      from "../../../components/BodyFont";
 import UserListContainer             from "../UserListContainer";
-import SidebarFooter                 from "../../ProfileSidebarContainer/footer";
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import UseGithubUsers from "../../../hooks/UseGithubUsers";
-
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     root            : {
@@ -52,14 +49,10 @@ const UserContainer = () => {
     const DisplayResults = (
         <Fragment>
             <UserListContainer userList={data}/>
-
-            <div style={{ marginTop: '8px' }}>
-                <small>* Unable to perform pagination due to Github API's rate limiting.</small>
-            </div>
         </Fragment>
     );
 
-    const userCountText = `Results: ${userCount} ${userCount === 1 ? 'user' : 'users'}`;
+    const userCountText = `${userCount} ${userCount === 1 ? 'user' : 'users'} found`;
 
     return (
         <content className={classes.root}>

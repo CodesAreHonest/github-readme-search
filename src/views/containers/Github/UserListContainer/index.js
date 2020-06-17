@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import makeStyles           from "@material-ui/core/styles/makeStyles";
 import GithubUserCard       from "../../../components/GithubUserCard";
+import UseGithubUserProfile from "../../../hooks/UseGithubUserProfile";
+import { githubUserTypes }  from "../../../../states/GithubUser";
+import { useHistory }       from "react-router";
 
 const useStyles = makeStyles(theme => ({
     content  : {
@@ -24,16 +27,17 @@ const useStyles = makeStyles(theme => ({
 
 const UserListContainer = ({ userList }) => {
     const classes = useStyles();
+    const history = useHistory();
 
     const githubUserList = userList.map((user, index) => {
-        const { id, avatar_url: avatarUrl, login } = user;
+        const { avatar_url: avatarUrl, login } = user;
 
         return (
             <GithubUserCard
                 key={index}
-                id={id}
                 avatarUrl={avatarUrl}
                 login={login}
+                onClick={() => history.push(`/user/profile/${login}`)}
             />
         )
     });

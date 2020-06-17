@@ -15,3 +15,12 @@ export const registerUserQuery = query => ({
 export const resetGetGithubUserStatus = () => ({
     type: types.RESET_GET_GITHUB_USER_STATUS
 });
+
+export const getUserProfile = username => ({
+    type   : types.GET_GITHUB_USER_PROFILE,
+    payload: { username }
+});
+
+export const resetGetUserProfileStatus = () => ({
+    type: types.RESET_GET_GITHUB_USER_PROFILE_STATUS
+});

@@ -2,8 +2,9 @@ import { apiResponse } from "../format";
 import * as types      from "./types";
 
 const initialState = {
-    query: "",
-    users: apiResponse
+    query  : "",
+    users  : apiResponse,
+    profile: apiResponse
 };
 
 const GithubUserReducer = (state = initialState, action) => {
@@ -47,6 +48,42 @@ const GithubUserReducer = (state = initialState, action) => {
                 ...state,
                 users: Object.assign({}, state.users, {
                     type: types.GET_GITHUB_USERS
+                })
+            }
+        }
+        case types.GET_GITHUB_USER_PROFILE: {
+            return {
+                ...state,
+                profile: Object.assign({}, state.profile, {
+                    type      : types.GET_GITHUB_USER_PROFILE,
+                    isFetching: true
+                })
+            }
+        }
+        case types.GET_GITHUB_USER_PROFILE_FAILURE: {
+            return {
+                ...state,
+                profile: Object.assign({}, state.profile, {
+                    type      : types.GET_GITHUB_USER_PROFILE_FAILURE,
+                    isFetching: false
+                })
+            }
+        }
+        case types.GET_GITHUB_USER_PROFILE_SUCCESS: {
+            return {
+                ...state,
+                profile: Object.assign({}, state.profile, {
+                    type      : types.GET_GITHUB_USER_PROFILE_SUCCESS,
+                    isFetching: false,
+                    data      : action.payload
+                })
+            }
+        }
+        case types.RESET_GET_GITHUB_USER_PROFILE_STATUS: {
+            return {
+                ...state,
+                profile: Object.assign({}, state.profile, {
+                    type: types.GET_GITHUB_USER_PROFILE
                 })
             }
         }

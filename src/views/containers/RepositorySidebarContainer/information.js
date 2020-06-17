@@ -9,41 +9,42 @@ import LinkIcon        from '@material-ui/icons/Link';
 import TwitterIcon     from '@material-ui/icons/Twitter';
 
 
-const RepositorySidebarInformation = () => {
+const RepositorySidebarInformation = ({ location, company, email, twitter }) => {
     return (
         <Fragment>
-            <Box>
+            {company && <Box>
                 <InformationItem
                     logo={<BusinessIcon/>}
-                    text="Some company"
+                    text={company}
                 />
-            </Box>
-            <Box>
+            </Box>}
+            {location && <Box>
                 <InformationItem
                     logo={<LocationOnIcon/>}
-                    text="Some location"
+                    text={location}
                 />
-            </Box>
-            <Box>
+            </Box>}
+            {email && <Box>
                 <InformationItem
                     logo={<EmailIcon/>}
-                    text="yinghua@gmail.com"
+                    text={email}
                 />
-            </Box>
-            <Box>
-                <InformationItem
-                    logo={<LinkIcon/>}
-                    text="Link"
-                />
-            </Box>
-            <Box>
+            </Box>}
+            {twitter && <Box>
                 <InformationItem
                     logo={<TwitterIcon/>}
-                    text="@yinghua"
+                    text={twitter}
                 />
-            </Box>
+            </Box>}
         </Fragment>
     )
+};
+
+RepositorySidebarInformation.defaultProps = {
+    location: '',
+    company : '',
+    email   : '',
+    twitter : ''
 };
 
 export default RepositorySidebarInformation

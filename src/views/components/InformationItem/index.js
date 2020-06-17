@@ -39,4 +39,8 @@ InformationItem.propTypes = {
     text: PropTypes.string.isRequired
 };
 
+InformationItem.defaultProps = {
+    text: ""
+};
+
 export default InformationItem

@@ -25,7 +25,7 @@ const GithubUserProfile = () => {
     const classes = useStyles();
     const history = useHistory();
 
-    const goBack = () => history.push("/");
+    const goBack = () => history.goBack();
 
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => setMobileOpen(!mobileOpen);

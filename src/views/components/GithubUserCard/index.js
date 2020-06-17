@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const GithubUserCard = ({ avatarUrl, id, login, onClick }) => {
+const GithubUserCard = ({ avatarUrl, login, onClick }) => {
     const classes = useStyles();
     return (
         <Grid container className={classes.root} onClick={onClick}>

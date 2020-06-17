@@ -13,9 +13,23 @@ const GithubUserAPI = {
                 return resolve(response.data);
             })
                      .catch(err => {
-                         return reject(err.response.data);
+                         return reject(err);
                      })
         })
+    },
+
+    getProfile(username) {
+        return new Promise((resolve, reject) => {
+            apiAction.get(`/users/${username}`, {}, {
+                Accept: "application/vnd.github.v3+json"
+            }).then(response => {
+                return resolve(response.data);
+            })
+                     .catch(err => {
+                         return reject(err);
+                     })
+        })
+
     }
 };
 

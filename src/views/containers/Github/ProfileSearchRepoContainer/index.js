@@ -94,7 +94,6 @@ const useStyles = makeStyles(theme => ({
 const ProfileSearchRepoContainer = () => {
 
     const [githubUser, setGithubUser] = useState("");
-    const [showPrevious, setShowPrevious] = useState(false);
     const classes = useStyles();
 
     const onGithubUserChange = e => setGithubUser(e.target.value);
@@ -113,8 +112,6 @@ const ProfileSearchRepoContainer = () => {
                        aria-autocomplete="none"
                        className={classes.textField}
                        placeholder="Search Repository..."
-                       onFocus={() => setShowPrevious(true)}
-                       onBlur={() => setShowPrevious(false)}
                 />
                 {isCloseButtonDisplay
                 && <Button color="secondary"
@@ -128,17 +125,6 @@ const ProfileSearchRepoContainer = () => {
                 <Button color="primary" type="submit" variant="contained" className={classes.searchButton}>
                     <SearchIcon/>
                 </Button>
-                {showPrevious && <Paper className={classes.previousSearch}>
-                    <Box className={classes.previousItem}>
-                        <MenuList id="suggestion-menu"
-                                  open={true}
-                        >
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>Profile</MenuItem>
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>My account</MenuItem>
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>Logout</MenuItem>
-                        </MenuList>
-                    </Box>
-                </Paper>}
             </Paper>
         </form>
     );

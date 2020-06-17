@@ -22,13 +22,14 @@ class Routes extends PureComponent {
         let rootRoutes = Array.prototype.concat(PublicRoutes);
 
         const publicRoutes = rootRoutes.map((route, index) => {
-            const { exact, path, component } = route;
+            const { exact, path, component, strict } = route;
             return (
                 <Route
                     exact={exact}
                     key={index}
                     path={path}
                     component={component}
+                    strict={strict}
                 />
             )
         });

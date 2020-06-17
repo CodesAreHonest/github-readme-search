@@ -37,9 +37,9 @@ const Header = ({ onMenuIconClick, onBackIconClick }) => {
     return (
         <AppBar position="fixed" color="default" className={classes.appBar}>
             <Toolbar variant="dense">
-                <IconButton color="default" edge="start" onClick={onBackIconClick}>
+                {onBackIconClick && <IconButton color="default" edge="start" onClick={onBackIconClick}>
                     <BackIcon/>
-                </IconButton>
+                </IconButton>}
                 <IconButton
                     aria-label="open drawer"
                     edge="start"
