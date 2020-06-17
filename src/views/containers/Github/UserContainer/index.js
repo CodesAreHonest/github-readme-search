@@ -1,4 +1,4 @@
-import React, { Fragment }           from "react";
+import React, { Fragment, useState } from "react";
 import Grid                          from "@material-ui/core/Grid";
 import Container                     from "@material-ui/core/Container";
 import makeStyles                    from "@material-ui/core/styles/makeStyles";
@@ -36,6 +36,7 @@ const UserContainer = () => {
     const { detail, isLoading } = UseGithubUsers();
     const { count: userCount, data } = detail;
 
+
     const NoResultFound = (
         <Box className={classes.noResultFound}>
             <SentimentVeryDissatisfiedIcon className={classes.dissatisfiedIcon}/>
@@ -63,11 +64,12 @@ const UserContainer = () => {
 
                         <Box className={classes.searchCount}>
                             <BodyFont>
-                                {userCount === 0 ? " " : userCountText}
+                                {userCount > 0 && userCountText}
                             </BodyFont>
                         </Box>
 
-                        {userCount === 0 ? NoResultFound : DisplayResults}
+                        {userCount === 0 && NoResultFound}
+                        {userCount > 0 && DisplayResults}
                     </Grid>
                 </Grid>
             </Container>

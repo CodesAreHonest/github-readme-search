@@ -5,7 +5,7 @@ import { githubUserAction }         from "../../states/GithubUser";
 const useGithubUsers = () => {
 
     const dispatch = useDispatch();
-    const githubUserCount = useSelector(({ githubUser }) => githubUser.users.data.total_count) ?? 0;
+    const githubUserCount = useSelector(({ githubUser }) => githubUser.users.data.total_count) ?? undefined;
     const users = useSelector(({ githubUser }) => githubUser.users.data.items) ?? [];
     const responseType = useSelector(({ githubUser }) => githubUser.users.type);
     const lastSearchQuery = useSelector(({ githubUser }) => githubUser.query);
