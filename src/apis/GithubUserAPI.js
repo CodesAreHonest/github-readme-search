@@ -4,7 +4,7 @@ const GithubUserAPI = {
     searchUsers(login, page, perPage) {
         return new Promise((resolve, reject) => {
             apiAction.get("/search/users", {
-                q       : login,
+                q       : `${login} in:login`,
                 page    : page,
                 per_page: perPage
             }, {

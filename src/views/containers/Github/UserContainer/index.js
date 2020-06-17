@@ -9,6 +9,8 @@ import UserListContainer             from "../UserListContainer";
 import SidebarFooter                 from "../../ProfileSidebarContainer/footer";
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
+import UseGithubUsers from "../../../hooks/UseGithubUsers";
+
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
@@ -34,8 +36,8 @@ const useStyles = makeStyles(theme => ({
 const UserContainer = () => {
 
     const classes = useStyles();
-    const githubUserCount = useSelector(({ githubUser }) => githubUser.users.data.total_count) ?? 0;
-    const githubUsers = useSelector(({ githubUser }) => githubUser.users.data.items) ?? [];
+    const { detail, isLoading } = UseGithubUsers();
+    const { count: userCount, data } = detail;
 
     const NoResultFound = (
         <Box className={classes.noResultFound}>
@@ -49,27 +51,30 @@ const UserContainer = () => {
 
     const DisplayResults = (
         <Fragment>
-            <UserListContainer userList={githubUsers}/>
-            {githubUserCount >= 10 &&
-            <SidebarFooter position="none"/>
-            }
+            <UserListContainer userList={data}/>
+
+            <div style={{ marginTop: '8px' }}>
+                <small>* Unable to perform pagination due to Github API's rate limiting.</small>
+            </div>
         </Fragment>
     );
+
+    const userCountText = `Results: ${userCount} ${userCount === 1 ? 'user' : 'users'}`;
 
     return (
         <content className={classes.root}>
             <Container>
                 <Grid container style={{ justifyContent: "center" }}>
                     <Grid item xs={12} sm={12} md={10} lg={8} className={classes.searchContainer}>
-                        <GithubUserSearchContainer/>
+                        <GithubUserSearchContainer loading={isLoading}/>
 
                         <Box className={classes.searchCount}>
                             <BodyFont>
-                                {githubUserCount === 0 ? " " : `Results: ${githubUserCount} ${githubUserCount === 1 ? 'user' : 'users'}`}
+                                {userCount === 0 ? " " : userCountText}
                             </BodyFont>
                         </Box>
 
-                        {githubUserCount === 0 ? NoResultFound : DisplayResults}
+                        {userCount === 0 ? NoResultFound : DisplayResults}
                     </Grid>
                 </Grid>
             </Container>

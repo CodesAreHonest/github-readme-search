@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const GithubUserSearchContainer = () => {
+const GithubUserSearchContainer = ({ loading }) => {
 
     const [githubUser, setGithubUser] = useState("");
     const { detail, getGithubUserWithQuery, registerUserQuery, resetStatus } = useGithubUsers();
@@ -166,7 +166,7 @@ const GithubUserSearchContainer = () => {
 };
 
 GithubUserSearchContainer.defaultProps = {
-    searchValue: ""
+    loading: false,
 };
 
 export default GithubUserSearchContainer;
