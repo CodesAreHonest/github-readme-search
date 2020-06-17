@@ -1,6 +1,6 @@
-import React          from "react";
-import makeStyles     from "@material-ui/core/styles/makeStyles";
-import GithubUserCard from "../../../components/GithubUserCard";
+import React, { useEffect } from "react";
+import makeStyles           from "@material-ui/core/styles/makeStyles";
+import GithubUserCard       from "../../../components/GithubUserCard";
 
 const useStyles = makeStyles(theme => ({
     content  : {
@@ -22,17 +22,31 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const UserListContainer = () => {
+const UserListContainer = ({ userList }) => {
     const classes = useStyles();
+
+    const githubUserList = userList.map((user, index) => {
+        const { id, avatar_url: avatarUrl, login } = user;
+
+        return (
+            <GithubUserCard
+                key={index}
+                id={id}
+                avatarUrl={avatarUrl}
+                login={login}
+            />
+        )
+    });
+
     return (
         <div className={classes.content}>
-            <GithubUserCard/>
-            <GithubUserCard/>
-            <GithubUserCard/>
-            <GithubUserCard/>
-            <GithubUserCard/>
+            {githubUserList}
         </div>
     );
+};
+
+UserListContainer.defaultProps = {
+    userList: []
 };
 
 export default UserListContainer;

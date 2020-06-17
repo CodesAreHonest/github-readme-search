@@ -11,6 +11,7 @@ import MenuList                              from "@material-ui/core/MenuList";
 import MenuItem                              from "@material-ui/core/MenuItem";
 import makeStyles                            from "@material-ui/core/styles/makeStyles";
 import { githubUserAction, githubUserTypes } from "../../../../states/GithubUser";
+import useGithubUsers                        from "../../../hooks/UseGithubUsers";
 
 const useStyles = makeStyles(theme => ({
     searchBox       : {
@@ -97,38 +98,42 @@ const useStyles = makeStyles(theme => ({
 const GithubUserSearchContainer = () => {
 
     const [githubUser, setGithubUser] = useState("");
-    const [showPrevious, setShowPrevious] = useState(false);
+    const { detail, getGithubUserWithQuery, registerUserQuery, resetStatus } = useGithubUsers();
+    const { lastSearchQuery, responseType } = detail;
     const classes = useStyles();
-    const dispatch = useDispatch();
     const history = useHistory();
 
     const onGithubUserChange = e => setGithubUser(e.target.value);
     const onClearUser = () => setGithubUser("");
     const isCloseButtonDisplay = githubUser.trim().length > 0;
 
-    const githubUserState = useSelector(({ githubUser }) => githubUser.users);
-
     const onFormSubmit = e => {
         e.preventDefault();
 
         if ( githubUser.trim().length <= 0 ) {
+            setGithubUser("");
             return false;
         }
 
-        dispatch(githubUserAction.getGithubUsers(githubUser));
+        getGithubUserWithQuery(githubUser);
     };
 
     useEffect(() => {
 
-        const { type } = githubUserState;
-        if ( type === githubUserTypes.GET_GITHUB_USERS_SUCCESS ) {
-            history.push("/user/result", {
-                query: githubUser
-            });
+        if ( responseType === githubUserTypes.GET_GITHUB_USERS_SUCCESS ) {
+            registerUserQuery(githubUser);
+            history.push("/user/result");
+            resetStatus();
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [githubUserState]);
+    }, [responseType]);
+
+    useEffect(() => {
+        setGithubUser(lastSearchQuery);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lastSearchQuery]);
 
     return (
         <form id="search-github-username" noValidate={true} onSubmit={onFormSubmit}>
@@ -141,8 +146,6 @@ const GithubUserSearchContainer = () => {
                        aria-autocomplete="none"
                        className={classes.textField}
                        placeholder="Search Github Username..."
-                       onFocus={() => setShowPrevious(true)}
-                       onBlur={() => setShowPrevious(false)}
                 />
                 {isCloseButtonDisplay
                 && <Button color="secondary"
@@ -156,21 +159,14 @@ const GithubUserSearchContainer = () => {
                 <Button color="primary" type="submit" variant="contained" className={classes.searchButton}>
                     <SearchIcon/>
                 </Button>
-                {showPrevious && <Paper className={classes.previousSearch}>
-                    <Box className={classes.previousItem}>
-                        <MenuList id="suggestion-menu"
-                                  open={true}
-                        >
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>Profile</MenuItem>
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>My account</MenuItem>
-                            <MenuItem className={classes.previousItemList} onClick={() => {}}>Logout</MenuItem>
-                        </MenuList>
-                    </Box>
-                </Paper>}
             </Paper>
         </form>
     );
 
+};
+
+GithubUserSearchContainer.defaultProps = {
+    searchValue: ""
 };
 
 export default GithubUserSearchContainer;

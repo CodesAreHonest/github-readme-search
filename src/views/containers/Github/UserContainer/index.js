@@ -1,28 +1,61 @@
-import React                     from "react";
-import Grid                      from "@material-ui/core/Grid";
-import Container                 from "@material-ui/core/Container";
-import makeStyles                from "@material-ui/core/styles/makeStyles";
-import Box                       from "@material-ui/core/Box";
-import GithubUserSearchContainer from "../UserSearchContainer";
-import BodyFont                  from "../../../components/BodyFont";
-import UserListContainer         from "../UserListContainer";
-import SidebarFooter             from "../../ProfileSidebarContainer/footer";
+import React, { Fragment }           from "react";
+import Grid                          from "@material-ui/core/Grid";
+import Container                     from "@material-ui/core/Container";
+import makeStyles                    from "@material-ui/core/styles/makeStyles";
+import Box                           from "@material-ui/core/Box";
+import GithubUserSearchContainer     from "../UserSearchContainer";
+import BodyFont                      from "../../../components/BodyFont";
+import UserListContainer             from "../UserListContainer";
+import SidebarFooter                 from "../../ProfileSidebarContainer/footer";
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
-    root           : {
+    root            : {
         width: "100%"
     },
-    searchCount    : {
+    searchCount     : {
         padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
     },
-    searchContainer: {
+    searchContainer : {
         marginTop: theme.spacing(2)
+    },
+    noResultFound   : {
+        textAlign: "center"
+    },
+    dissatisfiedIcon: {
+        fontSize    : "8rem",
+        color       : theme.palette.primary.light,
+        marginBottom: theme.spacing(1.5)
     }
 }));
 
 const UserContainer = () => {
 
     const classes = useStyles();
+    const githubUserCount = useSelector(({ githubUser }) => githubUser.users.data.total_count) ?? 0;
+    const githubUsers = useSelector(({ githubUser }) => githubUser.users.data.items) ?? [];
+
+    const NoResultFound = (
+        <Box className={classes.noResultFound}>
+            <SentimentVeryDissatisfiedIcon className={classes.dissatisfiedIcon}/>
+
+            <BodyFont>
+                We can't seem to find the record you looking for.
+            </BodyFont>
+        </Box>
+    );
+
+    const DisplayResults = (
+        <Fragment>
+            <UserListContainer userList={githubUsers}/>
+            {githubUserCount >= 10 &&
+            <SidebarFooter position="none"/>
+            }
+        </Fragment>
+    );
+
     return (
         <content className={classes.root}>
             <Container>
@@ -32,12 +65,11 @@ const UserContainer = () => {
 
                         <Box className={classes.searchCount}>
                             <BodyFont>
-                                Results: 2077 users.
+                                {githubUserCount === 0 ? " " : `Results: ${githubUserCount} ${githubUserCount === 1 ? 'user' : 'users'}`}
                             </BodyFont>
                         </Box>
 
-                        <UserListContainer/>
-                        <SidebarFooter position="none"/>
+                        {githubUserCount === 0 ? NoResultFound : DisplayResults}
                     </Grid>
                 </Grid>
             </Container>

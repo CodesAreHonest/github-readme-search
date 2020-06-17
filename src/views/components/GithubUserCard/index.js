@@ -1,10 +1,8 @@
-import React            from "react";
-import Grid             from "@material-ui/core/Grid";
-import Avatar           from "@material-ui/core/Avatar";
-import GithubSearchLogo from "../../../assets/github-search.jpg";
-import makeStyles       from "@material-ui/core/styles/makeStyles";
-import H5               from "../H5";
-import BodyFont         from "../BodyFont";
+import React      from "react";
+import Grid       from "@material-ui/core/Grid";
+import Avatar     from "@material-ui/core/Avatar";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import H6         from "../H6";
 
 const useStyles = makeStyles(theme => ({
     root       : {
@@ -21,28 +19,23 @@ const useStyles = makeStyles(theme => ({
     },
     description: {
         padding: `${theme.spacing(1)}px 0`
+    },
+    login      : {
+        padding: "3px 0"
     }
 }));
 
-const GithubUserCard = () => {
+const GithubUserCard = ({ avatarUrl, id, login, onClick }) => {
     const classes = useStyles();
     return (
-        <Grid container className={classes.root}>
-            <Grid item xs={2}>
-                <Avatar src={GithubSearchLogo} variant="rounded" className={classes.avatar}/>
+        <Grid container className={classes.root} onClick={onClick}>
+            <Grid item xs={1}>
+                <Avatar src={avatarUrl}/>
             </Grid>
-            <Grid item xs={10}>
-                <H5>
-                    :username
-                </H5>
-
-                <BodyFont>
-                    :name
-                </BodyFont>
-
-                <BodyFont className={classes.description}>
-                    :description
-                </BodyFont>
+            <Grid item xs={11} className={classes.login}>
+                <H6>
+                    {login}
+                </H6>
             </Grid>
         </Grid>
     )

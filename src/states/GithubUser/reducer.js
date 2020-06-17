@@ -2,6 +2,7 @@ import { apiResponse } from "../format";
 import * as types      from "./types";
 
 const initialState = {
+    query: "",
     users: apiResponse
 };
 
@@ -32,6 +33,20 @@ const GithubUserReducer = (state = initialState, action) => {
                     type      : types.GET_GITHUB_USERS_SUCCESS,
                     isFetching: false,
                     data      : action.payload
+                })
+            }
+        }
+        case types.SEARCH_USERNAME_QUERY: {
+            return {
+                ...state,
+                query: action.payload.query
+            }
+        }
+        case types.RESET_GET_GITHUB_USER_STATUS: {
+            return {
+                ...state,
+                users: Object.assign({}, state.users, {
+                    type: types.GET_GITHUB_USERS
                 })
             }
         }
