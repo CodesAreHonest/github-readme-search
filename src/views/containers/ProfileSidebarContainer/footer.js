@@ -1,6 +1,6 @@
 import React       from "react";
 import makeStyles  from "@material-ui/core/styles/makeStyles";
-import Box         from "@material-ui/core/Box";
+import IconButton  from "@material-ui/core/IconButton";
 import Button      from "@material-ui/core/Button";
 import Grid        from "@material-ui/core/Grid";
 import BackIcon    from "@material-ui/icons/ArrowBack";
@@ -36,12 +36,12 @@ const SidebarFooter = ({ position }) => {
             <Grid container spacing={1}>
                 <Grid item xs={6}>
                     <Button color="primary" variant="contained" className={classes.button}>
-                        <BackIcon/> <Box component="span" className={classes.buttonPrevious}>Previous</Box>
+                        <BackIcon/>
                     </Button>
                 </Grid>
                 <Grid item xs={6}>
                     <Button color="primary" variant="contained" className={classes.button}>
-                        <Box component="span" className={classes.buttonRight}>NEXT</Box> <ForwardIcon/>
+                        <ForwardIcon/>
                     </Button>
                 </Grid>
             </Grid>
