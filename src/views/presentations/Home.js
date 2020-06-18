@@ -20,8 +20,9 @@ const useStyles = makeStyles(theme => {
             textAlign: "center"
         },
         searchContainer: {
-            padding: theme.spacing(2),
-            margin : "0 auto"
+            padding  : theme.spacing(2),
+            margin   : "0 auto",
+            marginTop: theme.spacing(1)
         },
         avatar         : {
             width : theme.spacing(18),

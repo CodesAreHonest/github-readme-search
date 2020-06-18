@@ -10,11 +10,17 @@ const store = configureStore();
 
 // configure material ui palletes
 const theme = createMuiTheme({
-    palette: {
+    palette   : {
         type      : "dark",
         background: {
-            default: "#1B1F23"
+            default: "#000000"
+        },
+        action    : {
+            hover: "#2b2b2b"
         }
+    },
+    typography: {
+        fontFamily: `"Fira", "mono", sans-serif`
     }
 });
 

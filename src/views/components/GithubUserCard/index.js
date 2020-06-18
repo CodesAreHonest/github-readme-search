@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
         padding  : theme.spacing(1),
         "&:hover": {
             borderRadius   : theme.spacing(1),
-            backgroundColor: "black",
+            backgroundColor: theme.palette.action.hover,
             cursor         : "pointer"
         }
     },
