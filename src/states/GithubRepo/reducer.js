@@ -14,7 +14,8 @@ const GithubRepoReducer = (state = initialState, action) => {
                 ...state,
                 repositories: Object.assign({}, state.repositories, {
                     type      : types.GET_GITHUB_USER_REPOSITORIES,
-                    isFetching: true
+                    isFetching: true,
+                    data      : []
                 })
             }
         }

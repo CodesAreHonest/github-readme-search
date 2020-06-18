@@ -5,7 +5,7 @@ import makeStyles                    from "@material-ui/core/styles/makeStyles";
 import Box                           from "@material-ui/core/Box";
 import GithubUserSearchContainer     from "../UserSearchContainer";
 import BodyFont                      from "../../../components/BodyFont";
-import UserListContainer             from "../UserListContainer";
+import UserListContainer             from "../../../components/UserList";
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import UseGithubUsers from "../../../hooks/UseGithubUsers";

@@ -50,42 +50,42 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RepositoryCard = () => {
+const RepositoryCard = ({ name, description, updatedAt, starsCount, language, onClick }) => {
     const classes = useStyles();
 
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} onClick={onClick}>
             <Divider className={classes.divider}/>
             <Box className={classes.container}>
                 <BodyFont className={classes.title}>
-                    :repository-name
+                    {name}
                 </BodyFont>
                 <Paragraph className={classes.paragraph}>
-                    123123123
+                    {description}
                 </Paragraph>
 
                 <Grid container spacing={1}>
-                    <Grid xs item>
+                    {language && <Grid xs item>
                         <Box component="span" className={classes.logoContainer}>
                             <FiberManualRecordIcon variant="small" className={classes.logoSize}/>
                         </Box>
                         <Box component="span" className={classes.paragraph}>
-                            :language
+                            {language}
                         </Box>
-                    </Grid>
+                    </Grid>}
                     <Grid xs item>
                         <Box component="span" className={classes.logoContainer}>
                             <StarLogo variant="small" className={classes.logoSize}/>
                         </Box>
                         <Box component="span" className={classes.paragraph}>
-                            :star
+                            {starsCount}
                         </Box>
                     </Grid>
-                    <Grid xs={6} item>
+                    {updatedAt && <Grid xs={6} item>
                         <Box component="span" className={classes.paragraph}>
-                            Updated on Sep 3, 2019
+                            Updated on {new Date(updatedAt).toDateString()}
                         </Box>
-                    </Grid>
+                    </Grid>}
                 </Grid>
             </Box>
         </Box>

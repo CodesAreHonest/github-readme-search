@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
-import Button     from "@material-ui/core/Button";
-import Paper      from "@material-ui/core/Paper";
-import CloseIcon  from "@material-ui/icons/Close";
-import SearchIcon from "@material-ui/icons/Search";
-import Box        from "@material-ui/core/Box";
-import MenuList   from "@material-ui/core/MenuList";
-import MenuItem   from "@material-ui/core/MenuItem";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import Button         from "@material-ui/core/Button";
+import Paper          from "@material-ui/core/Paper";
+import CloseIcon      from "@material-ui/icons/Close";
+import SearchIcon     from "@material-ui/icons/Search";
+import makeStyles     from "@material-ui/core/styles/makeStyles";
+import UseGithubRepos from "../../../hooks/UseGithubRepos";
 
 const useStyles = makeStyles(theme => ({
     searchBox       : {
@@ -93,21 +91,35 @@ const useStyles = makeStyles(theme => ({
 
 const ProfileSearchRepoContainer = () => {
 
-    const [githubUser, setGithubUser] = useState("");
+    const [repo, setRepo] = useState("");
     const classes = useStyles();
 
-    const onGithubUserChange = e => setGithubUser(e.target.value);
-    const onClearUser = () => setGithubUser("");
+    const onGithubUserChange = e => setRepo(e.target.value);
+    const onClearUser = () => setRepo("");
 
-    const isCloseButtonDisplay = githubUser.trim().length > 0;
+    const isCloseButtonDisplay = repo.trim().length > 0;
+
+    const { getUserRepos } = UseGithubRepos();
+
+    const onFormSubmit = e => {
+        e.preventDefault();
+
+        if ( repo.trim().length <= 0 ) {
+            setRepo("");
+            return false;
+        }
+
+        getUserRepos(repo);
+    };
+
 
     return (
-        <form id="search-github-user">
+        <form id="search-github-repo" noValidate={true} onSubmit={onFormSubmit}>
             <Paper className={classes.searchBox}>
                 <input type="text"
                        onChange={onGithubUserChange}
-                       value={githubUser}
-                       name="searchGitUser"
+                       value={repo}
+                       name="searchGitRepo"
                        autoComplete="off"
                        aria-autocomplete="none"
                        className={classes.textField}

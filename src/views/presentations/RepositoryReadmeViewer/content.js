@@ -2,10 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import Box                                      from "@material-ui/core/Box";
 import Grid                                     from "@material-ui/core/Grid";
 import makeStyles                               from "@material-ui/core/styles/makeStyles";
-import ProfileSearchRepoContainer               from "../../containers/Github/ProfileSearchRepoContainer";
 import H5                                       from "../../components/H5";
 import UserRepoContainer                        from "../../containers/Github/UserRepoContainer";
-import SidebarFooter                            from "../../containers/ProfileSidebarContainer/footer";
 import UseGithubUserProfile                     from "../../hooks/UseGithubUserProfile";
 import SentimentVeryDissatisfiedIcon            from '@material-ui/icons/SentimentVeryDissatisfied';
 import BodyFont                                 from "../../components/BodyFont";
@@ -16,6 +14,8 @@ const useStyles = makeStyles(theme => ({
     },
     searchContainer  : {
         marginTop: theme.spacing(2),
+        height   : '80vh',
+        overflowY: "auto"
     },
     resultText       : {
         textAlign: 'center'
@@ -33,14 +33,14 @@ const useStyles = makeStyles(theme => ({
 const GithubUserProfileContent = () => {
     const classes = useStyles();
     const { detail } = UseGithubUserProfile();
-    const { profile } = detail;
+    const { profile, responseType } = detail;
     const [name, setName] = useState("");
     const [repoCount, setRepoCount] = useState(null);
 
     useEffect(() => {
 
-        const { name, public_repos } = profile;
-        setName(name);
+        const { login, public_repos } = profile;
+        setName(login);
         setRepoCount(public_repos);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,15 +51,10 @@ const GithubUserProfileContent = () => {
     const searchContainer = (
         <Fragment>
             <H5 className={classes.resultText}>
-                {name} has {repoCount} public {repositoryText}.
+                {name}'s public {repositoryText}.
             </H5>
-
             <Box className={classes.searchContainer}>
-                <ProfileSearchRepoContainer/>
-            </Box>
-
-            <Box className={classes.searchContainer}>
-                <UserRepoContainer/>
+                <UserRepoContainer isUserExist={responseType}/>
             </Box>
         </Fragment>
     );

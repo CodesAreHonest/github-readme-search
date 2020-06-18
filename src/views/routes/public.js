@@ -1,8 +1,8 @@
-import Home                 from "../presentations/Home";
-import GithubUserProfile    from "../presentations/GithubUserProfile";
-import GithubUserRepository from "../presentations/GithubUserRepository";
-import UserSearchResult     from "../presentations/UserSearchResult";
-import NotFoundPage         from "../presentations/404";
+import Home                   from "../presentations/Home";
+import RepositoryReadmeViewer from "../presentations/RepositoryReadmeViewer";
+import GithubUserProfile      from "../presentations/GithubUserProfile";
+import UserSearchResult       from "../presentations/UserSearchResult";
+import NotFoundPage           from "../presentations/404";
 
 const PublicRoutes = [
     {
@@ -12,17 +12,17 @@ const PublicRoutes = [
         component: Home
     },
     {
-        path     : '/user/repository',
+        path     : '/user/:username/:repository/readme',
         exact    : true,
-        label    : 'Github User Profile',
-        component: GithubUserProfile
+        label    : 'Repository README viewer',
+        component: RepositoryReadmeViewer
     },
     {
         path     : '/user/profile/:username',
         exact    : true,
         strict   : true,
-        label    : "Github User Repository",
-        component: GithubUserRepository
+        label    : "Github User Profile",
+        component: GithubUserProfile
     },
     {
         path     : '/user/result',

@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import makeStyles           from "@material-ui/core/styles/makeStyles";
-import GithubUserCard       from "../../../components/GithubUserCard";
-import UseGithubUserProfile from "../../../hooks/UseGithubUserProfile";
-import { githubUserTypes }  from "../../../../states/GithubUser";
-import { useHistory }       from "react-router";
+import React          from "react";
+import makeStyles     from "@material-ui/core/styles/makeStyles";
+import GithubUserCard from "../GithubUserCard";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     content  : {
@@ -25,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const UserListContainer = ({ userList }) => {
+const UserList = ({ userList }) => {
     const classes = useStyles();
     const history = useHistory();
 
@@ -49,8 +47,8 @@ const UserListContainer = ({ userList }) => {
     );
 };
 
-UserListContainer.defaultProps = {
+UserList.defaultProps = {
     userList: []
 };
 
-export default UserListContainer;
+export default UserList;

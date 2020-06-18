@@ -14,7 +14,8 @@ const GithubUserReducer = (state = initialState, action) => {
                 ...state,
                 users: Object.assign({}, state.users, {
                     type      : types.GET_GITHUB_USERS,
-                    isFetching: true
+                    isFetching: true,
+                    data      : []
                 })
             }
         }
@@ -56,7 +57,8 @@ const GithubUserReducer = (state = initialState, action) => {
                 ...state,
                 profile: Object.assign({}, state.profile, {
                     type      : types.GET_GITHUB_USER_PROFILE,
-                    isFetching: true
+                    isFetching: true,
+                    data      : []
                 })
             }
         }
