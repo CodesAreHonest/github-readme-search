@@ -40,14 +40,14 @@ const Header = ({ onMenuIconClick, onBackIconClick }) => {
                 {onBackIconClick && <IconButton color="default" edge="start" onClick={onBackIconClick}>
                     <BackIcon/>
                 </IconButton>}
-                <IconButton
+                {onMenuIconClick && <IconButton
                     aria-label="open drawer"
                     edge="start"
                     onClick={onMenuIconClick}
                     className={classes.menuButton}
                 >
                     <MenuIcon/>
-                </IconButton>
+                </IconButton>}
                 <Avatar
                     variant="rounded"
                     src={GithubSearchLogo}

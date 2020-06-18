@@ -29,10 +29,10 @@ const GithubUserCard = ({ avatarUrl, login, onClick }) => {
     const classes = useStyles();
     return (
         <Grid container className={classes.root} onClick={onClick}>
-            <Grid item xs={1}>
+            <Grid item xs={3} sm={1}>
                 <Avatar src={avatarUrl}/>
             </Grid>
-            <Grid item xs={11} className={classes.login}>
+            <Grid item xs={9} sm={11} className={classes.login}>
                 <H6>
                     {login}
                 </H6>
