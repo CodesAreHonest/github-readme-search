@@ -5,3 +5,7 @@ export const getUserRepositories = username => ({
     payload: { username }
 });
 
+export const getRawREADME = (username, repo) => ({
+    type   : types.GET_USER_REPOSITORY_README_RAW,
+    payload: { username, repo }
+});

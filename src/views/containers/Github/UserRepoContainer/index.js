@@ -25,9 +25,9 @@ const UserRepoContainer = ({ isUserExist }) => {
 
     const classes = useStyles();
     const history = useHistory();
-    const { username, repositories: repo } = useParams();
+    const { username } = useParams();
     const { detail, getUserRepos } = UseGithubRepos();
-    const { responseType, profile, isLoading } = detail;
+    const { responseType, profile } = detail;
 
     const [repositories, setRepositories] = useState([]);
 
@@ -44,7 +44,29 @@ const UserRepoContainer = ({ isUserExist }) => {
     useEffect(() => {
 
         if ( responseType === githubRepoTypes.GET_GITHUB_USER_REPOSITORIES_SUCCESS ) {
-            setRepositories(profile);
+            if ( profile.length === 0 ) {
+                setRepositories("");
+                return;
+            }
+
+            if ( profile.length > 0 ) {
+                const repositoryList = profile.map((repository, index) => {
+                    const { name, description, updated_at, stargazers_count, language } = repository;
+
+                    return (
+                        <RepositoryCard
+                            onClick={() => history.replace(`/user/${username}/${name}/readme`)}
+                            key={index}
+                            name={name}
+                            description={description}
+                            updatedAt={updated_at}
+                            starsCount={stargazers_count}
+                            language={language}
+                        />
+                    )
+                });
+                setRepositories(repositoryList);
+            }
         }
 
         if ( responseType === null ) {
@@ -55,22 +77,8 @@ const UserRepoContainer = ({ isUserExist }) => {
     }, [responseType]);
 
     return (
-        <div>
-            {repositories.length > 0 && repositories.map((repository, index) => {
-                const { name, description, updated_at, stargazers_count, language } = repository;
-
-                return (
-                    <RepositoryCard
-                        onClick={() => history.push(`/user/${username}/${name}/readme`)}
-                        key={index}
-                        name={name}
-                        description={description}
-                        updatedAt={updated_at}
-                        starsCount={stargazers_count}
-                        language={language}
-                    />
-                )
-            })}
+        <div style={{ padding: "8px" }}>
+            {repositories}
         </div>
     )
 };

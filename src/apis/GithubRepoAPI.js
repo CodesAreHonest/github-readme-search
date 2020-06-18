@@ -1,4 +1,5 @@
 import apiAction from "../services/ApiAction";
+import axios     from "axios"
 
 const GithubRepoAPI = {
     getRepositories(username, page = 1, perPage = 40) {
@@ -14,6 +15,17 @@ const GithubRepoAPI = {
                      .catch(err => {
                          return reject(err);
                      })
+        })
+    },
+
+    getRawREADME(login, repo) {
+        return new Promise((resolve, reject) => {
+            axios.get(`https://raw.githubusercontent.com/${login}/${repo}/master/README.md`)
+                 .then(response => {
+                     return resolve(response.data)
+                 })
+                 .catch(err => reject(err));
+
         })
     }
 };

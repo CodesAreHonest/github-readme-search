@@ -1,11 +1,11 @@
-import React, { useState }     from "react";
-import { useHistory }          from "react-router"
-import Toolbar                 from "@material-ui/core/Toolbar";
-import makeStyles              from "@material-ui/core/styles/makeStyles"
-import Header                  from "../../components/Header";
-import Sidebar                 from "../../components/Sidebar";
-import MarkdownContainer       from "../../containers/Github/MarkdownContainer";
-import ProfileSidebarContainer from "../../containers/ReadmeSidebarContainer";
+import React, { useState }    from "react";
+import { useHistory }         from "react-router"
+import Toolbar                from "@material-ui/core/Toolbar";
+import makeStyles             from "@material-ui/core/styles/makeStyles"
+import Header                 from "../../components/Header";
+import Sidebar                from "../../components/Sidebar";
+import MarkdownContainer      from "../../containers/Github/MarkdownContainer";
+import ReadmeSidebarContainer from "../../containers/ReadmeSidebarContainer";
 
 const useStyles = makeStyles(theme => {
     return {
@@ -41,7 +41,7 @@ const RepositoryReadmeViewer = () => {
                 onDrawerClose={handleDrawerToggle}
                 width={400}
             >
-                <ProfileSidebarContainer/>
+                <ReadmeSidebarContainer/>
             </Sidebar>
             <main className={classes.content}>
                 <Toolbar/>

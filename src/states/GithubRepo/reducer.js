@@ -38,6 +38,36 @@ const GithubRepoReducer = (state = initialState, action) => {
                 })
             }
         }
+        case types.GET_USER_REPOSITORY_README_RAW: {
+            return {
+                ...state,
+                readme: Object.assign({}, state.readme, {
+                    type      : types.GET_GITHUB_USER_REPOSITORIES,
+                    isFetching: true,
+                    data      : ""
+                })
+            }
+        }
+        case types.GET_USER_REPOSITORY_README_RAW_SUCCESS: {
+            return {
+                ...state,
+                readme: Object.assign({}, state.readme, {
+                    type      : types.GET_USER_REPOSITORY_README_RAW_SUCCESS,
+                    isFetching: false,
+                    data      : action.payload
+                })
+            }
+        }
+        case types.GET_USER_REPOSITORY_README_RAW_FAILURE: {
+            return {
+                ...state,
+                readme: Object.assign({}, state.readme, {
+                    type      : types.GET_USER_REPOSITORY_README_RAW_FAILURE,
+                    isFetching: false,
+                    data      : ""
+                })
+            }
+        }
         default:
             return state;
     }

@@ -1,61 +1,19 @@
-import React, { useState } from "react";
-import BranchSelect        from "./BranchSelect";
-import Box                 from "@material-ui/core/Box";
-import makeStyles          from "@material-ui/core/styles/makeStyles";
+import React, { useState, useEffect } from "react";
+import Box                            from "@material-ui/core/Box";
+import makeStyles                     from "@material-ui/core/styles/makeStyles";
+import { useParams }                  from "react-router";
+import Divider                        from "@material-ui/core/Divider";
+
 
 // render mark down with html
-import ReactMarkDown from "react-markdown";
-import Paper         from "@material-ui/core/Paper";
-import CodeBlock     from "./Codeblock";
-import toc           from "remark-toc";
-
-const initialSource = `
-# Live demo
-
-Changes are automatically rendered as you type.
-
-## Table of Contents
-
-* Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)
-* Renders actual, "native" React DOM elements
-* Allows you to escape or skip HTML (try toggling the checkboxes above)
-* If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
-
-## HTML block below
-
-<blockquote>
-  This blockquote will change based on the HTML settings above.
-</blockquote>
-
-## How about some code?
-\`\`\`js
-var React = require('react');
-var Markdown = require('react-markdown');
-
-React.render(
-  <Markdown source="# Your markdown here" />,
-  document.getElementById('content')
-);
-\`\`\`
-
-Pretty neat, eh?
-
-## Tables?
-
-| Feature   | Support |
-| --------- | ------- |
-| tables    | ✔ |
-| alignment | ✔ |
-| wewt      | ✔ |
-
-## More info?
-
-Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
-
----------------
-
-A component by [Espen Hovlandsdal](https://espen.codes/)
-`;
+import ReactMarkDown           from "react-markdown";
+import Paper                   from "@material-ui/core/Paper";
+import CodeBlock               from "./Codeblock";
+import toc                     from "remark-toc";
+import H5                      from "../../../components/H5";
+import UseGithubUserRepoReadme from "../../../hooks/UseGithubUserRepoReadme";
+import { githubRepoTypes }     from "../../../../states/GithubRepo";
+import Loading                 from "../../../components/Loading";
 
 const useStyles = makeStyles(theme => ({
     root         : {
@@ -67,31 +25,68 @@ const useStyles = makeStyles(theme => ({
     paper        : {
         borderRadius   : theme.spacing(1),
         padding        : "16px",
-        height         : '80vh',
+        maxHeight      : '80vh',
         overflowY      : "auto",
         color          : "black",
         backgroundColor: "#ffffffbd"
+    },
+    divider      : {
+        margin: "8px 0"
     }
 }));
 
 const MarkdownContainer = () => {
     const classes = useStyles();
-    const [markDown, setMarkDown] = useState(initialSource);
+    const [markDown, setMarkDown] = useState("");
+    const { username, repository } = useParams();
+    const { detail, getUserRepoReadme } = UseGithubUserRepoReadme();
+    const { responseType, content, isLoading } = detail;
+
+    useEffect(() => {
+        getUserRepoReadme(username, repository);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [repository]);
+
+    useEffect(() => {
+        if ( responseType === githubRepoTypes.GET_USER_REPOSITORY_README_RAW_SUCCESS ) {
+            setMarkDown(content);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [responseType]);
+
+    const markdownContainer = (
+        <Paper>
+            {markDown.length > 0 && <ReactMarkDown
+                className={classes.paper}
+                source={markDown}
+                escapeHtml={false} // render HTML
+                includeNodeIndex={true}
+                renderers={{ code: CodeBlock }}
+                plugins={[toc]}
+            />}
+        </Paper>
+    );
+
+    const loadingContainer = (
+        <Box style={{ textAlign: "center", marginTop: "32px" }}>
+            <Loading size={60} thickness={4} style={{ margin: "0 auto" }}/>
+            <H5>Loading ...</H5>
+        </Box>
+    );
 
     return (
         <Box className={classes.root}>
-            <Box><BranchSelect/></Box>
             <Box className={classes.markdownPaper}>
-                <Paper>
-                    <ReactMarkDown
-                        className={classes.paper}
-                        source={markDown}
-                        escapeHtml={false} // render HTML
-                        includeNodeIndex={true}
-                        renderers={{ code: CodeBlock }}
-                        plugins={[toc]}
-                    />
-                </Paper>
+                <Box style={{ textAlign: "center" }}>
+                    <H5>{repository}'s README</H5>
+                </Box>
+                <Divider className={classes.divider}/>
+                {isLoading ?
+                    loadingContainer :
+                    markdownContainer
+                }
             </Box>
         </Box>
     );

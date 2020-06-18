@@ -8,43 +8,51 @@ import Divider               from "@material-ui/core/Divider";
 import BodyFont              from "../../../components/BodyFont";
 import Paragraph             from "../../../components/Paragraph";
 
+import { useParams } from "react-router";
+
 const useStyles = makeStyles(theme => ({
-    root         : {
-        borderLeft: `${theme.spacing(1)}px solid transparent`,
-        cursor    : "pointer",
-        '&:hover' : {
-            borderLeft     : `${theme.spacing(1)}px solid ${theme.palette.common.black}`,
+    root           : {
+        padding  : theme.spacing(1),
+        cursor   : "pointer",
+        '&:hover': {
             backgroundColor: "rgba(0,0,0,0.24)",
+            borderRadius   : theme.spacing(2),
             "& $title"     : {
                 color: theme.palette.primary.light,
             }
         },
 
     },
-    container    : {
-        padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
+    "root@selected": {
+        padding        : theme.spacing(1),
+        cursor         : "pointer",
+        backgroundColor: "rgba(0,0,0,0.24)",
+        borderRadius   : theme.spacing(2),
+        "& $title"     : {
+            color: theme.palette.primary.light,
+        }
     },
-    avatar       : {
+    avatar         : {
         background: "transparent"
     },
-    logoContainer: {
+    logoContainer  : {
         position   : "relative",
         top        : "3px",
         marginRight: theme.spacing(0.5)
     },
-    logoSize     : {
+    logoSize       : {
         width : theme.spacing(2),
         height: theme.spacing(2)
     },
-    title        : {
+    title          : {
         padding      : theme.spacing(0.2),
         letterSpacing: 1.15
     },
-    paragraph    : {
+    paragraph      : {
         fontSize: "12px",
         padding : `${theme.spacing(0.5)}px 0`,
     },
-    divider      : {
+    divider        : {
         marginLeft : theme.spacing(2),
         marginRight: theme.spacing(2)
     }
@@ -52,11 +60,11 @@ const useStyles = makeStyles(theme => ({
 
 const RepositoryCard = ({ name, description, updatedAt, starsCount, language, onClick }) => {
     const classes = useStyles();
+    const { repository } = useParams();
 
     return (
-        <Box className={classes.root} onClick={onClick}>
-            <Divider className={classes.divider}/>
-            <Box className={classes.container}>
+        <Box className={classes.container} onClick={onClick}>
+            <Box className={repository === name ? classes["root@selected"] : classes.root}>
                 <BodyFont className={classes.title}>
                     {name}
                 </BodyFont>
