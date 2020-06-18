@@ -2,10 +2,8 @@
 
 > A web application build intended for user to view the repo's README. 
 
-## Getting Started 
 
-Installation 
-------------
+## Installation 
 
 ### Running in Development
 
