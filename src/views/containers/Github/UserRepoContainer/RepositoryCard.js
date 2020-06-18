@@ -91,7 +91,7 @@ const RepositoryCard = ({ name, description, updatedAt, starsCount, language, on
                     {description}
                 </Paragraph>
 
-                {updatedAt && <Grid xs={6} item>
+                {updatedAt && <Grid xs={12} sm={6} item>
                     <Box component="span" className={classes.paragraph}>
                         Updated on {new Date(updatedAt).toDateString()}
                     </Box>

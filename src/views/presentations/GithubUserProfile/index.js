@@ -15,12 +15,18 @@ import H5                                       from "../../components/H5";
 const useStyles = makeStyles(theme => {
     return {
         root   : {
-            display: 'flex'
+            display: 'flex',
         },
         content: {
-            padding   : `0 ${theme.spacing(1)}px`,
-            marginLeft: 300,
-            flexGrow  : 1
+            padding                       : `0 ${theme.spacing(1)}px`,
+            marginLeft                    : 300,
+            flexGrow                      : 1,
+            [theme.breakpoints.down('md')]: {
+                marginLeft: 300,
+            },
+            [theme.breakpoints.down('sm')]: {
+                marginLeft: 0,
+            },
         },
         loading: {
             backgroundColor: "white"

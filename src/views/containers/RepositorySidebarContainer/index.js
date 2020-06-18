@@ -18,9 +18,13 @@ const useStyles = makeStyles(theme => ({
         padding : theme.spacing(2)
     },
     avatar         : {
-        width : theme.spacing(32),
-        height: theme.spacing(32),
-        border: "4px solid lightgrey"
+        width                         : theme.spacing(32),
+        height                        : theme.spacing(32),
+        border                        : "4px solid lightgrey",
+        [theme.breakpoints.down('sm')]: {
+            width : theme.spacing(24),
+            height: theme.spacing(24),
+        },
     },
     userDetail     : {
         marginTop: theme.spacing(2),

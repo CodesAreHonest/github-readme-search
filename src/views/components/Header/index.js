@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
     logo      : {
         margin: "0 auto",
-        cursor: "pointer"
+        cursor: "pointer",
     },
     menuButton: {
         [theme.breakpoints.up('sm')]: {

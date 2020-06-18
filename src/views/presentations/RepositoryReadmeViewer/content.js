@@ -63,8 +63,7 @@ const GithubUserProfileContent = () => {
                 {name}'s public {repositoryText}.
             </H5>
             <Box className={classes.searchContainer}>
-                {isLoading && loadingContainer}
-                {!isLoading && <UserRepoContainer isUserExist={responseType}/>}
+                <UserRepoContainer isUserExist={responseType}/>
             </Box>
         </Fragment>
     );
@@ -83,6 +82,7 @@ const GithubUserProfileContent = () => {
         <Box className={classes.root}>
             <Grid container style={{ justifyContent: "center" }}>
                 <Grid xs={12} sm={12} md={8} item>
+                    {isLoading && loadingContainer}
                     {repoCount > 0 && searchContainer}
                     {repoCount === 0 && notFoundRepo}
                 </Grid>

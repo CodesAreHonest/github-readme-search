@@ -7,15 +7,20 @@ import useTheme   from "@material-ui/core/styles/useTheme";
 const useStyles = makeStyles(theme => {
     return {
         drawer     : {
+            width                       : props => props.width,
             [theme.breakpoints.up('sm')]: {
-                width     : props => props.width,
+                width     : 225,
                 flexShrink: 0,
             },
         },
         drawerPaper: {
-            width     : props => props.width,
-            background: "#212121 !important",
-            border    : "none"
+            width                       : props => props.width,
+            background                  : "#212121 !important",
+            border                      : "none",
+            [theme.breakpoints.up('sm')]: {
+                width     : 225,
+                flexShrink: 0,
+            },
         }
     }
 });
