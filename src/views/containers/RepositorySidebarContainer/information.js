@@ -5,7 +5,6 @@ import InformationItem from "../../components/InformationItem";
 import BusinessIcon    from '@material-ui/icons/Business';
 import LocationOnIcon  from '@material-ui/icons/LocationOn';
 import EmailIcon       from '@material-ui/icons/Email';
-import LinkIcon        from '@material-ui/icons/Link';
 import TwitterIcon     from '@material-ui/icons/Twitter';
 
 

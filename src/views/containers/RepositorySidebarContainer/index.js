@@ -6,7 +6,6 @@ import Box                            from "@material-ui/core/Box";
 import Button                         from "@material-ui/core/Button";
 
 import GitHubIcon from '@material-ui/icons/GitHub';
-import GithubLogo from "../../../assets/github-search.jpg";
 
 import RepositorySidebarDetail      from "./detail";
 import RepositorySidebarInformation from "./information";

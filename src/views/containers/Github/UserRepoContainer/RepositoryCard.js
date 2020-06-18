@@ -9,7 +9,6 @@ import Paragraph             from "../../../components/Paragraph";
 
 import { useParams } from "react-router";
 import BodyFont      from "../../../components/BodyFont";
-import Divider       from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(theme => ({
     root           : {

@@ -1,13 +1,11 @@
-import React, { Fragment, useEffect } from "react";
-import Avatar                         from "@material-ui/core/Avatar";
-import Grid                           from "@material-ui/core/Grid";
-import Box                            from "@material-ui/core/Box";
-import makeStyles                     from "@material-ui/core/styles/makeStyles";
+import React, { Fragment } from "react";
+import Avatar              from "@material-ui/core/Avatar";
+import Grid                from "@material-ui/core/Grid";
+import Box                 from "@material-ui/core/Box";
+import makeStyles          from "@material-ui/core/styles/makeStyles";
 
-import GithubSearchLogo     from "../../../assets/github-search.jpg";
-import H6                   from "../../components/H6";
-import BodyFont             from "../../components/BodyFont";
-import UseGithubUserProfile from "../../hooks/UseGithubUserProfile";
+import H6       from "../../components/H6";
+import BodyFont from "../../components/BodyFont";
 
 const useStyles = makeStyles(theme => ({
     hero  : {

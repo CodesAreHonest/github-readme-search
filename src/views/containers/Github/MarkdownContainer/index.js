@@ -7,7 +7,6 @@ import Divider                        from "@material-ui/core/Divider";
 
 // render mark down with html
 import ReactMarkDown                 from "react-markdown";
-import Paper                         from "@material-ui/core/Paper";
 import CodeBlock                     from "./Codeblock";
 import toc                           from "remark-toc";
 import H5                            from "../../../components/H5";

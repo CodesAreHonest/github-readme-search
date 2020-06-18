@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector }   from "react-redux";
 import { useHistory }                 from "react-router";
 
-import Button                                from "@material-ui/core/Button";
-import Paper                                 from "@material-ui/core/Paper";
-import CloseIcon                             from "@material-ui/icons/Close";
-import SearchIcon                            from "@material-ui/icons/Search";
-import Box                                   from "@material-ui/core/Box";
-import MenuList                              from "@material-ui/core/MenuList";
-import MenuItem                              from "@material-ui/core/MenuItem";
-import makeStyles                            from "@material-ui/core/styles/makeStyles";
-import { githubUserAction, githubUserTypes } from "../../../../states/GithubUser";
-import useGithubUsers                        from "../../../hooks/UseGithubUsers";
+import Button              from "@material-ui/core/Button";
+import Paper               from "@material-ui/core/Paper";
+import CloseIcon           from "@material-ui/icons/Close";
+import SearchIcon          from "@material-ui/icons/Search";
+import makeStyles          from "@material-ui/core/styles/makeStyles";
+import { githubUserTypes } from "../../../../states/GithubUser";
+import useGithubUsers      from "../../../hooks/UseGithubUsers";
 
 const useStyles = makeStyles(theme => ({
     searchBox       : {
