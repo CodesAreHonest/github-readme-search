@@ -6,23 +6,25 @@ import Divider                        from "@material-ui/core/Divider";
 
 
 // render mark down with html
-import ReactMarkDown           from "react-markdown";
-import Paper                   from "@material-ui/core/Paper";
-import CodeBlock               from "./Codeblock";
-import toc                     from "remark-toc";
-import H5                      from "../../../components/H5";
-import UseGithubUserRepoReadme from "../../../hooks/UseGithubUserRepoReadme";
-import { githubRepoTypes }     from "../../../../states/GithubRepo";
-import Loading                 from "../../../components/Loading";
+import ReactMarkDown                 from "react-markdown";
+import Paper                         from "@material-ui/core/Paper";
+import CodeBlock                     from "./Codeblock";
+import toc                           from "remark-toc";
+import H5                            from "../../../components/H5";
+import UseGithubUserRepoReadme       from "../../../hooks/UseGithubUserRepoReadme";
+import { githubRepoTypes }           from "../../../../states/GithubRepo";
+import Loading                       from "../../../components/Loading";
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import BodyFont                      from "../../../components/BodyFont";
 
 const useStyles = makeStyles(theme => ({
-    root         : {
+    root            : {
         padding: `0 16px`,
     },
-    markdownPaper: {
+    markdownPaper   : {
         padding: `8px 0`,
     },
-    paper        : {
+    paper           : {
         borderRadius   : theme.spacing(1),
         padding        : "16px",
         maxHeight      : '80vh',
@@ -30,8 +32,16 @@ const useStyles = makeStyles(theme => ({
         color          : "black",
         backgroundColor: "#ffffffbd"
     },
-    divider      : {
+    divider         : {
         margin: "8px 0"
+    },
+    dissatisfiedIcon: {
+        fontSize    : "8rem",
+        color       : theme.palette.secondary.light,
+        marginBottom: theme.spacing(1.5)
+    },
+    repoName        : {
+        color: theme.palette.secondary.light,
     }
 }));
 
@@ -56,17 +66,27 @@ const MarkdownContainer = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [responseType]);
 
+    const NotFoundPage = (
+        <Box style={{ marginTop: "4rem", textAlign: "center", background: "transparent" }}>
+            <SentimentVeryDissatisfiedIcon className={classes.dissatisfiedIcon}/>
+
+            <BodyFont>
+                This repository does not have README.
+            </BodyFont>
+        </Box>
+    );
+
     const markdownContainer = (
-        <Paper>
-            {markDown.length > 0 && <ReactMarkDown
+        <Box>
+            {markDown.length > 0 ? <ReactMarkDown
                 className={classes.paper}
                 source={markDown}
                 escapeHtml={false} // render HTML
                 includeNodeIndex={true}
                 renderers={{ code: CodeBlock }}
                 plugins={[toc]}
-            />}
-        </Paper>
+            /> : NotFoundPage}
+        </Box>
     );
 
     const loadingContainer = (
@@ -80,7 +100,8 @@ const MarkdownContainer = () => {
         <Box className={classes.root}>
             <Box className={classes.markdownPaper}>
                 <Box style={{ textAlign: "center" }}>
-                    <H5>{repository}'s README</H5>
+                    <H5><Box component="span" className={classes.repoName}>{repository}</Box> repository's
+                                                                                              README</H5>
                 </Box>
                 <Divider className={classes.divider}/>
                 {isLoading ?

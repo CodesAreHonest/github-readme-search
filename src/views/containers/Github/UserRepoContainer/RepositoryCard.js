@@ -4,11 +4,12 @@ import makeStyles            from "@material-ui/core/styles/makeStyles";
 import Grid                  from "@material-ui/core/Grid";
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import StarLogo              from "@material-ui/icons/StarBorder";
-import Divider               from "@material-ui/core/Divider";
-import BodyFont              from "../../../components/BodyFont";
+import H6                    from "../../../components/H6";
 import Paragraph             from "../../../components/Paragraph";
 
 import { useParams } from "react-router";
+import BodyFont      from "../../../components/BodyFont";
+import Divider       from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(theme => ({
     root           : {
@@ -45,59 +46,92 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(2)
     },
     title          : {
-        padding      : theme.spacing(0.2),
-        letterSpacing: 1.15
+        color     : theme.palette.primary.light,
+        fontWeight: 700,
     },
     paragraph      : {
         fontSize: "12px",
         padding : `${theme.spacing(0.5)}px 0`,
     },
+    asideParagraph : {
+        fontSize: "12px"
+    },
     divider        : {
+        color      : "white",
         marginLeft : theme.spacing(2),
         marginRight: theme.spacing(2)
-    }
+    },
+    criteria       : {
+        textAlign : "left",
+        paddingTop: theme.spacing(2)
+    },
 }));
 
-const RepositoryCard = ({ name, description, updatedAt, starsCount, language, onClick }) => {
+const RepositoryCard = ({ name, description, updatedAt, starsCount, language, onClick, aside }) => {
     const classes = useStyles();
     const { repository } = useParams();
 
-    return (
-        <Box className={classes.container} onClick={onClick}>
-            <Box className={repository === name ? classes["root@selected"] : classes.root}>
-                <BodyFont className={classes.title}>
+    const asideDesign = (
+        <Box>
+            <H6 className={classes.title}>
+                {name}
+            </H6>
+            {description && <BodyFont className={classes.asideParagraph}>
+                {description}
+            </BodyFont>}
+        </Box>
+    );
+
+    const pageDesign = (
+        <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+                <H6 className={classes.title}>
                     {name}
-                </BodyFont>
+                </H6>
                 <Paragraph className={classes.paragraph}>
                     {description}
                 </Paragraph>
 
-                <Grid container spacing={1}>
-                    {language && <Grid xs item>
+                {updatedAt && <Grid xs={6} item>
+                    <Box component="span" className={classes.paragraph}>
+                        Updated on {new Date(updatedAt).toDateString()}
+                    </Box>
+                </Grid>}
+            </Grid>
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                <Box container spacing={1} className={classes.criteria}>
+                    {language && <Box>
                         <Box component="span" className={classes.logoContainer}>
                             <FiberManualRecordIcon variant="small" className={classes.logoSize}/>
                         </Box>
                         <Box component="span" className={classes.paragraph}>
                             {language}
                         </Box>
-                    </Grid>}
-                    <Grid xs item>
+                    </Box>}
+                    <Box>
                         <Box component="span" className={classes.logoContainer}>
                             <StarLogo variant="small" className={classes.logoSize}/>
                         </Box>
                         <Box component="span" className={classes.paragraph}>
                             {starsCount}
                         </Box>
-                    </Grid>
-                    {updatedAt && <Grid xs={6} item>
-                        <Box component="span" className={classes.paragraph}>
-                            Updated on {new Date(updatedAt).toDateString()}
-                        </Box>
-                    </Grid>}
-                </Grid>
+                    </Box>
+                </Box>
+            </Grid>
+        </Grid>
+    );
+
+    return (
+        <Box className={classes.container} onClick={onClick}>
+            <Box className={repository === name ? classes["root@selected"] : classes.root}>
+                {aside ? asideDesign : pageDesign}
             </Box>
         </Box>
     )
+};
+
+RepositoryCard.defaultProps = {
+    aside: false
 };
 
 export default RepositoryCard;

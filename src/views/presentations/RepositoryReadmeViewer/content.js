@@ -7,6 +7,7 @@ import UserRepoContainer                        from "../../containers/Github/Us
 import UseGithubUserProfile                     from "../../hooks/UseGithubUserProfile";
 import SentimentVeryDissatisfiedIcon            from '@material-ui/icons/SentimentVeryDissatisfied';
 import BodyFont                                 from "../../components/BodyFont";
+import Loading                                  from "../../components/Loading";
 
 const useStyles = makeStyles(theme => ({
     root             : {
@@ -22,10 +23,11 @@ const useStyles = makeStyles(theme => ({
     },
     dissatisfiedIcon : {
         fontSize    : "8rem",
-        color       : theme.palette.primary.light,
+        color       : theme.palette.secondary.light,
         marginBottom: theme.spacing(1.5)
     },
     notFoundContainer: {
+        marginTop: "5rem",
         textAlign: 'center'
     }
 }));
@@ -33,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 const GithubUserProfileContent = () => {
     const classes = useStyles();
     const { detail } = UseGithubUserProfile();
-    const { profile, responseType } = detail;
+    const { profile, responseType, isLoading } = detail;
     const [name, setName] = useState("");
     const [repoCount, setRepoCount] = useState(null);
 
@@ -48,19 +50,27 @@ const GithubUserProfileContent = () => {
 
     const repositoryText = repoCount > 1 ? "repositories" : "repository";
 
+    const loadingContainer = (
+        <Box className={classes.notFoundContainer}>
+            <Loading size={60} thickness={4} style={{ margin: "0 auto" }}/>
+            <H5>Loading ...</H5>
+        </Box>
+    );
+
     const searchContainer = (
         <Fragment>
             <H5 className={classes.resultText}>
                 {name}'s public {repositoryText}.
             </H5>
             <Box className={classes.searchContainer}>
-                <UserRepoContainer isUserExist={responseType}/>
+                {isLoading && loadingContainer}
+                {!isLoading && <UserRepoContainer isUserExist={responseType}/>}
             </Box>
         </Fragment>
     );
 
     const notFoundRepo = (
-        <Box className={classes.searchContainer}>
+        <Box className={classes.notFoundContainer}>
             <SentimentVeryDissatisfiedIcon className={classes.dissatisfiedIcon}/>
 
             <BodyFont>
@@ -77,7 +87,6 @@ const GithubUserProfileContent = () => {
                     {repoCount === 0 && notFoundRepo}
                 </Grid>
             </Grid>
-
         </Box>
     )
 };

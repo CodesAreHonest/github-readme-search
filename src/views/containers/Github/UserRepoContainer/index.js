@@ -6,7 +6,7 @@ import { githubRepoTypes }            from "../../../../states/GithubRepo";
 import UseGithubRepos                 from "../../../hooks/UseGithubRepos";
 import { githubUserTypes }            from "../../../../states/GithubUser";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     '@global': {
         '*::-webkit-scrollbar'      : {
             width: '0.4em'
@@ -18,10 +18,15 @@ const useStyles = makeStyles(() => ({
             backgroundColor: 'rgba(0,0,0,.1)',
             outline        : '1px solid slategrey'
         }
+    },
+    root     : {
+        padding        : "8px",
+        backgroundColor: "#1d1e1f",
+        borderRadius   : theme.spacing(1)
     }
 }));
 
-const UserRepoContainer = ({ isUserExist }) => {
+const UserRepoContainer = ({ isUserExist, aside }) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -55,6 +60,7 @@ const UserRepoContainer = ({ isUserExist }) => {
 
                     return (
                         <RepositoryCard
+                            aside={aside}
                             onClick={() => history.replace(`/user/${username}/${name}/readme`)}
                             key={index}
                             name={name}
@@ -77,10 +83,14 @@ const UserRepoContainer = ({ isUserExist }) => {
     }, [responseType]);
 
     return (
-        <div style={{ padding: "8px" }}>
+        <div className={classes.root}>
             {repositories}
         </div>
     )
 };
+
+UserRepoContainer.defaultProps = {
+    aside: false
+}
 
 export default UserRepoContainer;

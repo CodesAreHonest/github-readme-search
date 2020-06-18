@@ -17,10 +17,20 @@ const theme = createMuiTheme({
         },
         action    : {
             hover: "#2b2b2b"
+        },
+        primary   : {
+            main : "#0d47a1",
+            light: "#5472d3",
+            dark : "#002171"
+        },
+        secondary : {
+            main : "#ffa726",
+            dark : "#c77800",
+            light: "#ffd95b"
         }
     },
     typography: {
-        fontFamily: `"Fira", "mono", sans-serif`
+        fontFamily: `"Fira Code", "mono", sans-serif`
     }
 });
 

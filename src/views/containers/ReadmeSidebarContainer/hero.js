@@ -1,12 +1,13 @@
-import React, { Fragment } from "react";
-import Avatar              from "@material-ui/core/Avatar";
-import Grid                from "@material-ui/core/Grid";
-import Box                 from "@material-ui/core/Box";
-import makeStyles          from "@material-ui/core/styles/makeStyles";
+import React, { Fragment, useEffect } from "react";
+import Avatar                         from "@material-ui/core/Avatar";
+import Grid                           from "@material-ui/core/Grid";
+import Box                            from "@material-ui/core/Box";
+import makeStyles                     from "@material-ui/core/styles/makeStyles";
 
-import GithubSearchLogo from "../../../assets/github-search.jpg";
-import H6               from "../../components/H6";
-import BodyFont         from "../../components/BodyFont";
+import GithubSearchLogo     from "../../../assets/github-search.jpg";
+import H6                   from "../../components/H6";
+import BodyFont             from "../../components/BodyFont";
+import UseGithubUserProfile from "../../hooks/UseGithubUserProfile";
 
 const useStyles = makeStyles(theme => ({
     hero  : {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const SidebarHero = () => {
+const SidebarHero = ({ avatarUrl, name, username }) => {
     const classes = useStyles();
 
     return (
@@ -29,17 +30,17 @@ const SidebarHero = () => {
                     <Grid item xs={3}>
                         <Avatar
                             variant="rounded"
-                            src={GithubSearchLogo}
+                            src={avatarUrl}
                             className={classes.avatar}
                         />
                     </Grid>
                     <Grid item xs={9} className={classes.username}>
                         <Box>
-                            <H6>:name</H6>
+                            <H6>{name}</H6>
                         </Box>
                         <Box>
                             <BodyFont>
-                                :username
+                                {username}
                             </BodyFont>
                         </Box>
                     </Grid>

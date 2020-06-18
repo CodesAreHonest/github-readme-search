@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
     dissatisfiedIcon: {
         fontSize    : "8rem",
-        color       : theme.palette.primary.light,
+        color       : theme.palette.secondary.light,
         marginBottom: theme.spacing(1.5)
     }
 }));

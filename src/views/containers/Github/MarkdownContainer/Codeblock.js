@@ -1,11 +1,11 @@
 import React                          from "react";
 import PropTypes                      from "prop-types";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { docco }                      from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { darcula }                    from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const CodeBlock = ({ language, value }) => {
     return (
-        <SyntaxHighlighter language={language} style={docco}>
+        <SyntaxHighlighter language={language} style={darcula}>
             {value}
         </SyntaxHighlighter>
     );

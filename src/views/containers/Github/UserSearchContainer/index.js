@@ -145,7 +145,7 @@ const GithubUserSearchContainer = () => {
                        autoComplete="off"
                        aria-autocomplete="none"
                        className={classes.textField}
-                       placeholder="Search Github Username..."
+                       placeholder="Search Username..."
                 />
                 {isCloseButtonDisplay
                 && <Button color="secondary"
