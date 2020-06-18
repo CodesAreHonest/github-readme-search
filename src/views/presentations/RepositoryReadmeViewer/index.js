@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => {
         },
         content: {
             padding   : `0 ${theme.spacing(1)}px`,
-            marginLeft: 400,
-            flexGrow  : 1
+            marginLeft: 280,
+            flexGrow  : 1,
         }
     }
 });
@@ -39,7 +39,7 @@ const RepositoryReadmeViewer = () => {
             <Sidebar
                 open={mobileOpen}
                 onDrawerClose={handleDrawerToggle}
-                width={400}
+                width={280}
             >
                 <ReadmeSidebarContainer/>
             </Sidebar>

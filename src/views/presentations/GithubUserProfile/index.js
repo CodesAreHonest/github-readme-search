@@ -18,15 +18,9 @@ const useStyles = makeStyles(theme => {
             display: 'flex',
         },
         content: {
-            padding                       : `0 ${theme.spacing(1)}px`,
-            marginLeft                    : 300,
-            flexGrow                      : 1,
-            [theme.breakpoints.down('md')]: {
-                marginLeft: 300,
-            },
-            [theme.breakpoints.down('sm')]: {
-                marginLeft: 0,
-            },
+            padding   : `0 ${theme.spacing(1)}px`,
+            marginLeft: 300,
+            flexGrow  : 1,
         },
         loading: {
             backgroundColor: "white"

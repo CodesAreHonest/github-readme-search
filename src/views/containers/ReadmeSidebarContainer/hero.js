@@ -25,14 +25,14 @@ const SidebarHero = ({ avatarUrl, name, username }) => {
         <Fragment>
             <div className={classes.hero}>
                 <Grid container spacing={1}>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <Avatar
                             variant="rounded"
                             src={avatarUrl}
                             className={classes.avatar}
                         />
                     </Grid>
-                    <Grid item xs={9} className={classes.username}>
+                    <Grid item xs={8} className={classes.username}>
                         <Box>
                             <H6>{name}</H6>
                         </Box>
