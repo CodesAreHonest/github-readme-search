@@ -98,7 +98,7 @@ const RepositoryCard = ({ name, description, updatedAt, starsCount, language, on
                 </Grid>}
             </Grid>
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-                <Box container spacing={1} className={classes.criteria}>
+                <Box spacing={1} className={classes.criteria}>
                     {language && <Box>
                         <Box component="span" className={classes.logoContainer}>
                             <FiberManualRecordIcon variant="small" className={classes.logoSize}/>

@@ -8,6 +8,8 @@ import Box                            from "@material-ui/core/Box";
 
 import { useParams }       from "react-router";
 import { githubUserTypes } from "../../../states/GithubUser";
+import MenuIcon            from "@material-ui/icons/Menu";
+import IconButton          from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles(theme => ({
     searchContainer: {
@@ -20,10 +22,13 @@ const useStyles = makeStyles(theme => ({
     repoContainer  : {
         maxHeight: '80vh',
         overflowY: "auto",
+    },
+    menuIcon       : {
+        marginLeft: "auto"
     }
 }));
 
-const ReadmeSidebarContainer = () => {
+const ReadmeSidebarContainer = ({ onDrawerClose }) => {
     const classes = useStyles();
     const { detail, getGithubUserProfile } = UseGithubUserProfile();
     const { responseType, profile } = detail;
@@ -56,7 +61,11 @@ const ReadmeSidebarContainer = () => {
 
     return (
         <div className={classes.root}>
-            <Toolbar variant="dense"/>
+            <Toolbar variant="dense" disableGutters={true}>
+                <IconButton color="default" edge="start" onClick={onDrawerClose} className={classes.menuIcon}>
+                    <MenuIcon/>
+                </IconButton>
+            </Toolbar>
             <SidebarHero avatarUrl={avatarUrl} name={name} username={user}/>
             <Box className={classes.repoContainer}>
                 <UserRepoContainer aside={true}/>

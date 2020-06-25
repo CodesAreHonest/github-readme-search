@@ -13,14 +13,17 @@ import { useHistory } from "react-router";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
-    appBar    : {
+    appBar      : {
         zIndex: theme.zIndex.drawer + 1,
     },
-    logo      : {
-        margin: "0 auto",
-        cursor: "pointer",
+    logo        : {
+        marginLeft: "auto",
+        cursor    : "pointer",
     },
-    menuButton: {
+    toolbarWidth: {
+        width: "100%"
+    },
+    menuButton  : {
         [theme.breakpoints.up('sm')]: {
             display: 'none',
         },
@@ -48,12 +51,14 @@ const Header = ({ onMenuIconClick, onBackIconClick }) => {
                 >
                     <MenuIcon/>
                 </IconButton>}
-                <Avatar
-                    variant="rounded"
-                    src={GithubSearchLogo}
-                    className={classes.logo}
-                    onClick={navigateToHome}
-                />
+                <div className={classes.toolbarWidth}>
+                    <Avatar
+                        variant="rounded"
+                        src={GithubSearchLogo}
+                        className={classes.logo}
+                        onClick={navigateToHome}
+                    />
+                </div>
             </Toolbar>
         </AppBar>
     )

@@ -10,12 +10,14 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import RepositorySidebarDetail      from "./detail";
 import RepositorySidebarInformation from "./information";
 import UseGithubUserProfile         from "../../hooks/UseGithubUserProfile";
+import IconButton                   from "@material-ui/core/IconButton";
+import MenuIcon                     from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
     root           : {
         position: 'relative',
         height  : '100%',
-        padding : theme.spacing(2)
+        padding : `0 ${theme.spacing(2)}px`
     },
     avatar         : {
         width                         : theme.spacing(32),
@@ -39,10 +41,13 @@ const useStyles = makeStyles(theme => ({
     buttonText     : {
         marginLeft: theme.spacing(1),
         fontSize  : "1em"
+    },
+    menuIcon       : {
+        marginLeft: "auto"
     }
 }));
 
-const RepositorySidebarContainer = () => {
+const RepositorySidebarContainer = ({ onDrawerClose }) => {
 
     const classes = useStyles();
     const { detail } = UseGithubUserProfile();
@@ -74,7 +79,11 @@ const RepositorySidebarContainer = () => {
 
     return (
         <div className={classes.root}>
-            <Toolbar variant="dense"/>
+            <Toolbar variant="dense" disableGutters={true}>
+                <IconButton color="default" edge={false} onClick={onDrawerClose} className={classes.menuIcon}>
+                    <MenuIcon/>
+                </IconButton>
+            </Toolbar>
             <Avatar variant="rounded" src={avatarUrl} className={classes.avatar}/>
 
             <Box className={classes.userDetail}>

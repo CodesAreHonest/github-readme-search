@@ -1,12 +1,10 @@
-import React, { StrictMode } from 'react';
-import ReactDOM              from 'react-dom';
-import App                   from './views/app';
-import * as serviceWorker    from './serviceWorker';
+import React              from 'react';
+import ReactDOM           from 'react-dom';
+import App                from './views/app';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <StrictMode>
-        <App/>
-    </StrictMode>,
+    <App/>,
     document.getElementById('root')
 );
 

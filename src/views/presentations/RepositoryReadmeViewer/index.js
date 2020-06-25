@@ -9,13 +9,15 @@ import ReadmeSidebarContainer from "../../containers/ReadmeSidebarContainer";
 
 const useStyles = makeStyles(theme => {
     return {
-        root   : {
-            display: 'flex'
-        },
         content: {
-            padding   : `0 ${theme.spacing(1)}px`,
-            marginLeft: 280,
-            flexGrow  : 1,
+            padding                       : `0 ${theme.spacing(1)}px`,
+            marginLeft                    : 280,
+            flexGrow                      : 1,
+            [theme.breakpoints.down('xs')]: {
+                marginLeft: 0,
+                flexGrow  : 0
+            },
+
         }
     }
 });
@@ -41,7 +43,7 @@ const RepositoryReadmeViewer = () => {
                 onDrawerClose={handleDrawerToggle}
                 width={280}
             >
-                <ReadmeSidebarContainer/>
+                <ReadmeSidebarContainer onDrawerClose={handleDrawerToggle}/>
             </Sidebar>
             <main className={classes.content}>
                 <Toolbar/>

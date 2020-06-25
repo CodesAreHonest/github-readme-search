@@ -52,7 +52,7 @@ const Sidebar = ({ open, onDrawerClose, children, width }) => {
                     }}
                     PaperProps={{ elevation: 5 }}
                     variant="permanent"
-                    open
+                    open={open}
                 >
                     {children}
                 </Drawer>

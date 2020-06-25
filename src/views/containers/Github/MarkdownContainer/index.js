@@ -18,7 +18,10 @@ import BodyFont                      from "../../../components/BodyFont";
 
 const useStyles = makeStyles(theme => ({
     root            : {
-        padding: `0 16px`,
+        padding                       : `0 16px`,
+        [theme.breakpoints.down('sm')]: {
+            padding: `0 ${theme.spacing(1)}px`,
+        },
     },
     markdownPaper   : {
         padding: `8px 0`,

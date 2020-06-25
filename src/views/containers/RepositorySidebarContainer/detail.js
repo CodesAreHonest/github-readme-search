@@ -13,7 +13,7 @@ const RepositorySidebarDetail = ({ name, username }) => {
 };
 
 RepositorySidebarDetail.propTypes = {
-    name    : PropTypes.string.isRequired,
+    name    : PropTypes.string,
     username: PropTypes.string.isRequired
 };
 

@@ -14,13 +14,12 @@ import H5                                       from "../../components/H5";
 
 const useStyles = makeStyles(theme => {
     return {
-        root   : {
-            display: 'flex',
-        },
         content: {
-            padding   : `0 ${theme.spacing(1)}px`,
-            marginLeft: 300,
-            flexGrow  : 1,
+            padding                       : `0 ${theme.spacing(1)}px`,
+            marginLeft                    : 300,
+            [theme.breakpoints.down('xs')]: {
+                marginLeft: 0,
+            },
         },
         loading: {
             backgroundColor: "white"
@@ -71,7 +70,7 @@ const GithubUserRepository = () => {
                 onDrawerClose={handleDrawerToggle}
                 width={300}
             >
-                <RepositorySidebarContainer/>
+                <RepositorySidebarContainer onDrawerClose={handleDrawerToggle}/>
             </Sidebar>
             <main className={classes.content}>
                 <Toolbar/>
