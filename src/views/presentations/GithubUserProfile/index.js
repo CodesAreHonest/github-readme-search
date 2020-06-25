@@ -80,7 +80,7 @@ const GithubUserRepository = () => {
     );
 
     const loadingContent = (
-        <Box style={{ position: 'absolute', top: '30%', right: "50%" }}>
+        <Box style={{ display: "table", margin: "0 auto", marginTop: "25%" }}>
             <CircularProgress color="inherit" size="5rem"/>
             <H5 style={{ marginTop: '16px' }}>Loading...</H5>
         </Box>
